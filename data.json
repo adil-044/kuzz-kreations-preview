@@ -143,6 +143,7 @@
         "source": "google"
       }
     ],
-    "hero": "images/ig-C5E8nUxRC-n.jpg"
+    "hero": "images/hero-locs.jpg",
+    "heroSource": "higgsfield gpt_image_2, ref ig-DbRdQS7OwNK microlocs"
   }
 }
