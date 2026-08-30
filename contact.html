@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact | Kuzz Kreations Brantford</title>
-  <meta name="description" content="Visit Kuzz Kreations at 204 Dalhousie St, Brantford. Call 519-209-8803. Mon–Sat." />
+  <meta name="description" content="204 Dalhousie St · 519-209-8803" />
   <meta name="theme-color" content="#1C0920" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body class="has-preview">  <div class="preview-bar" role="status">Preview — share this link with Wendy · changes update here before HostGator delivery</div>  <a class="skip" href="#main">Skip to content</a>
+<body class="has-preview">  <div class="preview-bar" role="status">Preview for Wendy — her copy &amp; photos · tell us what to change before HostGator delivery</div>  <a class="skip" href="#main">Skip to content</a>
   <header class="nav">
     <a class="logo" href="./">Kuzz <em>Kreations</em></a>
     <nav aria-label="Primary">
@@ -38,15 +38,15 @@
   </div>
   <main id="main">
     <header class="page-hero">
-      <div class="wrap">
+      <div class="wrap" data-reveal>
         <p class="kicker">Contact</p>
-        <h1 class="title">Visit the salon</h1>
-        <p class="lead">Need to speak with a specific stylist? Call or book — we're happy to assist.</p>
+        <h1 class="title">Need to speak with a specific stylist?</h1>
+        <p class="lead">If you&#x27;d like to book an appointment with us simply call the salon on 1-519-209-8803. We will be happy to assist you or simply use our online Guest Card and be a part of our family for exclusive offers and Discounts.</p>
       </div>
     </header>
     <section class="section">
-      <div class="wrap visit-grid">
-        <dl class="info-card">
+      <div class="wrap visit-grid" data-stagger>
+        <dl class="info-card reveal-child">
           <dt>Address</dt>
           <dd>204 Dalhousie St, Brantford, ON N3S 3T7</dd>
           <dt>Phone</dt>
@@ -54,19 +54,16 @@
           <dt>Hours</dt>
           <dd>Mon–Wed 9:00 AM – 7:30 PM<br>Thu–Fri 9:00 AM – 7:00 PM<br>Sat 9:00 AM – 5:00 PM<br>Sun closed</dd>
         </dl>
-        <dl class="info-card">
+        <dl class="info-card reveal-child">
           <dt>Social</dt>
           <dd><a href="https://www.instagram.com/kuzzkreationshairstyles/" target="_blank" rel="noopener">Instagram @kuzzkreationshairstyles</a></dd>
           <dd><a href="https://www.facebook.com/profile.php?id=100078342901677" target="_blank" rel="noopener">Facebook</a></dd>
           <dt>Directions</dt>
           <dd><a href="https://www.google.com/maps/search/?api=1&query=Kuzz+Kreations+204+Dalhousie+St+Brantford" target="_blank" rel="noopener">Open in Google Maps</a></dd>
           <dt>Guest card</dt>
-          <dd><a href="https://docs.google.com/forms/d/e/1FAIpQLSe8gEEIcNVgdPCEuFpiiT0xWk4HIZdGW_JE8Sim-rZdKBl1oA/viewform" target="_blank" rel="noopener">Join for offers &amp; discounts</a></dd>
+          <dd><a href="https://docs.google.com/forms/d/e/1FAIpQLSe8gEEIcNVgdPCEuFpiiT0xWk4HIZdGW_JE8Sim-rZdKBl1oA/viewform" target="_blank" rel="noopener">Exclusive offers &amp; discounts</a></dd>
         </dl>
       </div>
-      <p style="margin-top:1.5rem;text-align:center">
-        <a class="btn btn-primary" href="./book.html">Book appointment</a>
-      </p>
     </section>
   </main>
   <footer class="site">
@@ -93,6 +90,11 @@
     <a class="btn btn-ghost" href="tel:+15192098803">Call</a>
     <a class="btn btn-primary" href="./book.html">Book</a>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="./site.js"></script>
+  <script src="./animations.js"></script>
+
 </body>
 </html>

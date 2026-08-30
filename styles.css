@@ -385,6 +385,29 @@ footer.site a:hover { color: var(--coral); }
 }
 body.has-preview .nav { top: 2rem; }
 
+/* Grain overlay */
+.grain::before {
+  content: ""; pointer-events: none; position: absolute; inset: 0; z-index: 2; opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.nav-scrolled {
+  background: color-mix(in oklch, var(--plum-deep) 94%, transparent) !important;
+  box-shadow: 0 8px 32px oklch(0.08 0.03 325 / 0.45);
+}
+
+.hero-lead { margin: 0.75rem 0 0; color: var(--muted); font-size: 1rem; max-width: 36ch; }
+
+.parallax-wrap {
+  overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line);
+}
+.parallax-wrap img {
+  width: 100%; height: min(72vw, 460px); object-fit: cover;
+  filter: saturate(1.06) contrast(1.05);
+}
+
+[data-reveal], .reveal-child { will-change: transform, opacity; }
+
 .style-rail {
   display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
   padding: 0.25rem 0 1rem; -webkit-overflow-scrolling: touch;

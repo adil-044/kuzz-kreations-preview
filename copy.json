@@ -1,0 +1,124 @@
+{
+  "source": "kuzzkreations.ca + Google Sites — light typo fixes only. Reviews/address from Google Maps.",
+  "googleSites": {
+    "heroTitle": "Look & Feel Beautiful",
+    "heroSub": "The Best Service. The Best Styles.",
+    "stylistNote": "Need to speak with a specific stylist?",
+    "about1": "At Kuzz Kreations Hair and Beauty Salon, our goal is to make you shine like a star. We create flattering, contemporary looks for our guests, specializing in versatile styles for everyday life. Whether you want something fashion forward, timeless, or just for a special event, Kuzz Kreations has your answer.",
+    "about2": "We believe that you are your best accessory. This is why we offer a full service experience including Hair Extensions, Hair Treatments, Cornrows, Color, and Natural Locs services.",
+    "fullServiceHeading": "A Full Service Experience"
+  },
+  "home": {
+    "treatmentsHeading": "Our Exclusive Hair Treatments & Tips",
+    "fullServiceHeading": "Our Full Service Experience",
+    "intro": "At Kuzz Kreations you can find some of the best salon (Deals) near you. So get ready to pamper and indulge yourself with the most attractive and affordable Hair | Beauty Salon offers in the City of Brantford. we offer a wide variety of full Service experience for all type of Braids for Mens and Women.",
+    "salonBlock": "At Kuzz Kreations we believe in delivering best-in-class customer experience by providing our services by some of the best stylist in our hair Salon in Brantford, high-quality products, and relaxing ambiance.",
+    "productsIntro": "Hydrating and nourishing is our hair care collection features a full range of clean and safer products. At Kuzz Kreations we create safer high-performing hair care without harmful ingredients, so you can feel confident in your daily routine.",
+    "bookBlock": "If you'd like to book an appointment with us simply call the salon on 1-519-209-8803. We will be happy to assist you or simply use our online Guest Card and be a part of our family for exclusive offers and Discounts."
+  },
+  "services": [
+    {
+      "id": "locs",
+      "title": "DreadLocks",
+      "copy": "Simple Dreadlocks hairstyles. Using natural Castor Oil Which can also enhance hair growth, for longer and thicker hair.",
+      "featured": true
+    },
+    {
+      "id": "extensions",
+      "title": "Hair Extensions",
+      "copy": "Let our Weave Extensions do their Magic. A protective way in boosting your style."
+    },
+    {
+      "id": "braids",
+      "title": "Braids Extensions",
+      "copy": "Braids hairstyles and different types of twists for guys to ensure healthy hair growth."
+    },
+    {
+      "id": "color",
+      "title": "Hair Cut & Hair Color",
+      "copy": "Make a dramatic color change from soft balayage and ombre blends in natural hues of blonde, brown and red."
+    },
+    {
+      "id": "mens",
+      "title": "Mens Braids Styles",
+      "copy": "Men Braids styles the way you want them, with care to ensure healthy hair growth and style."
+    },
+    {
+      "id": "crochet",
+      "title": "Crochet Braids",
+      "copy": "Healthy hair care begins with an exfoliating cleanse to remove product build up"
+    },
+    {
+      "id": "olaplex",
+      "title": "Olaplex Hair Treatments",
+      "copy": "Rejuvenate your hair with our penetrating hair treatment service, that repairs damaged hair, and fight the battle of frizzy hair."
+    },
+    {
+      "id": "relaxer",
+      "title": "Perm Relaxer",
+      "copy": "While some People go to great lengths for hair growth and to straighten process, we provide the best relaxer technique for healthy hair"
+    }
+  ],
+  "products": {
+    "treatmentsTitle": "Our Treatments",
+    "treatments": "Olaplex Bond Building System. keeping up with the latest Eco friendly developments in the beauty industry is very important to give our clients the best products, for hair growth and thickness which keeps the hair healthy all year long.",
+    "productsTitle": "Our Products",
+    "products": "We Make sure our products contain the finest ingredients that is formulated to cater to all types of hair. Which we customizes to suit right services and products for your needs."
+  },
+  "locs": {
+    "pageTitle": "Dreadlocks Styles",
+    "sectionTitle": "Locs Hairstyles",
+    "intro": "Natural Locs Hairstyle is a (highly tweakable, and extremely versatile) hairstyle. Whether you are wondering how to start Dreadlocks on Natural hair or the benefits of Locing your hair for the first time. re-styling your existing locs with an updo, or just having the freedom of leaving your hair alone.",
+    "sections": [
+      {
+        "title": "How to start Dreadlocks",
+        "copy": "The health of your hair is the most important part of your Loc Journey, with the right care and time you can two strand twist starter Locs on short hair, giving it is beautiful Loc Twist Hairstyle. Single Braids on Natural Hair, or Comb Twist Styles which is another way for starter Locs maintenance."
+      },
+      {
+        "title": "Dread Styles for female",
+        "copy": "You can wear them up, wear them down, curl them, crimp them and even color them. Whether your locks are long or short we can make your Locs style look great."
+      },
+      {
+        "title": "Colored Dreadlocks",
+        "copy": "Coloring your Locs for the first time can be a bit scary. it can be a beautiful thing, but without the proper moisture and care it can also cause thinning Locs."
+      },
+      {
+        "title": "Locs Styles Male",
+        "copy": "We do Locs with care, class and lots of passion, while using the best products with integrity for your Loc styles."
+      },
+      {
+        "title": "White Guy Dreads Shaved sides",
+        "copy": "Just like different textures of hair there are various methods in which you can style Locs. Hair texture plays a big role in how to locs Your hair."
+      },
+      {
+        "title": "Hot Oil Treatments",
+        "copy": "Our Castor Oil Hot Oil Treatment is known for the ability to moisturize Locs everyday deeply penetrate all layers of the hair follicles, with its very high content of omega-9 fatty acid it prevents the scalp from drying out and regenerate healthy growth."
+      }
+    ],
+    "journeyTitle": "Locs Journey",
+    "journey": "Our Dreadlocks Salon in Brantford will give you the benefits of locking hair, and the freedom you can only imagine!",
+    "benefitsTitle": "Benefits of Locking Hair",
+    "benefits": [
+      {
+        "title": "Interlocking Locs",
+        "copy": "Should I wrap my locks up at night?"
+      },
+      {
+        "title": "Best Oils for Locs",
+        "copy": "Castor Oil, Olive Oil, Avocado Oil & Hemp Oil."
+      },
+      {
+        "title": "Quick and easy hair style for Locs",
+        "copy": "How to prevent build up from forming in my locs?"
+      },
+      {
+        "title": "Short Micro Locs Style",
+        "copy": "How to Style Short Micro Locs"
+      }
+    ],
+    "disclaimer": "Please Note: All prices are starting prices. Your final costs will be provided upon booking or once we have discussed your desired look. You are welcome to send pictures in advance of your appointment for a more exact cost. The Price of a Consultation is free.",
+    "deposits": "A deposit of $50.00 is mandatory with all service this amount will be deducted from your total cost at the end of your service. Clients have 24 hours after booking to receive a full refund on their deposit.",
+    "consult": "Schedule a Consultation call and leave a detailed message with your Number, so we can meet and help grow and embrace your natural hair Journey."
+  },
+  "googleOwner": "Brantford's premiere salon for Color, Cuts, Cornrow Styles, Braids Extensions, Weave Extensions, Dreadlocks, Micro Locs, Crochet Braids and other natural styles. is a full-service beauty salon dedicated to consistently providing genuine customer care and satisfaction for clients by rendering excellent service, quality products, and an enjoyable atmosphere at an acceptable price/value. we will also maintain a friendly, fair, and creative work environment, which respects diversity, ideas, and hard work."
+}
