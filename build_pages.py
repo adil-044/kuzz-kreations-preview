@@ -18,7 +18,7 @@ GUEST_CARD = "https://docs.google.com/forms/d/e/1FAIpQLSe8gEEIcNVgdPCEuFpiiT0xWk
 RATING = DATA["rating"]
 REVIEWS = DATA["reviewsCount"]
 HERO = DATA["images"]["hero"]
-HERO_SRC = f"./{HERO}?v=20260830"
+HERO_SRC = f"./{HERO}?v=20260830-wendy"
 GS = COPY["googleSites"]
 
 NAV = [
@@ -188,7 +188,7 @@ def index() -> str:
   <main id="main">
     <section class="hero grain" data-hero aria-label="Hero">
       <div class="hero-media" aria-hidden="true">
-        <img src="{HERO_SRC}" alt="Natural micro locs at Kuzz Kreations salon" width="2400" height="1500" fetchpriority="high" />
+        <img src="{HERO_SRC}" alt="Beautiful healthy locs — Kuzz Kreations" width="2400" height="1500" fetchpriority="high" />
       </div>
       <div class="wrap hero-copy">
         <p class="pill" data-hero-item>{e(GS["heroTitle"])}</p>
