@@ -433,6 +433,10 @@ footer.site a:hover { color: var(--coral); }
 .foot-watermark:hover { color: var(--coral); border-color: color-mix(in oklch, var(--coral) 45%, var(--line)); }
 .foot-watermark img { border-radius: 4px; }
 
+@media (min-width: 640px) and (max-width: 839px) {
+  footer.site .foot-main { grid-template-columns: 1fr 1fr; }
+}
+
 @media (min-width: 840px) {
   .nav-desktop { display: flex; }
   .nav-toggle, .nav-book-m { display: none; }
