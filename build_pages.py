@@ -19,6 +19,13 @@ RATING = DATA["rating"]
 REVIEWS = DATA["reviewsCount"]
 HERO = DATA["images"]["hero"]
 HERO_SRC = f"./{HERO}?v=20260831-wendy"
+GALLERY = DATA["images"].get("gallery") or DATA["images"]["ig"] + DATA["images"]["google"]
+STYLE_RAIL_IMGS = {
+    "locs": "images/ig-DbRdQS7OwNK.jpg",
+    "braids": "images/google-5.jpg",
+    "extensions": "images/google-1.jpg",
+    "crochet": "images/google-2.jpg",
+}
 GS = COPY["googleSites"]
 WENDY = COPY["wendy"]
 
@@ -163,11 +170,9 @@ def service_cards(featured_first: bool = True) -> str:
 
 def style_rail() -> str:
     locs_svcs = [s for s in COPY["services"] if s["id"] in ("locs", "braids", "extensions", "crochet")]
-    imgs = DATA["images"]["ig"]
-    loc_imgs = [i for i in imgs if "loc" in i.get("caption", "").lower() or "dread" in i.get("caption", "").lower()]
     cards = []
-    for i, s in enumerate(locs_svcs):
-        img = loc_imgs[i]["file"] if i < len(loc_imgs) else HERO
+    for s in locs_svcs:
+        img = STYLE_RAIL_IMGS.get(s["id"], HERO)
         cards.append(
             f"""<a class="style-card reveal-child" href="./services.html#{s['id']}">
           <img src="./{img}" alt="{e(s['title'])}" loading="lazy" width="300" height="375" />
@@ -396,14 +401,11 @@ def services() -> str:
 
 def gallery() -> str:
     figures = []
-    for img in DATA["images"]["ig"]:
-        cap = img.get("caption", "").split("\n")[0][:90]
+    for img in GALLERY:
+        cap = (img.get("caption") or "Kuzz Kreations salon work").split("\n")[0][:90]
+        label = "Instagram" if img.get("source") == "instagram" else "Google"
         figures.append(
-            f'<figure class="reveal-child"><img src="./{img["file"]}" alt="{e(cap)}" loading="lazy" /><figcaption>Instagram · {e(cap)}</figcaption></figure>'
-        )
-    for img in DATA["images"]["google"]:
-        figures.append(
-            f'<figure class="reveal-child"><img src="./{img["file"]}" alt="Kuzz Kreations salon" loading="lazy" /><figcaption>Google · Salon photo</figcaption></figure>'
+            f'<figure class="reveal-child"><img src="./{img["file"]}" alt="{e(cap)}" loading="lazy" /><figcaption>{label} · {e(cap)}</figcaption></figure>'
         )
 
     return (
@@ -458,7 +460,7 @@ def about() -> str:
     <section class="section">
       <div class="wrap split">
         <div class="parallax-wrap" data-parallax>
-          <img src="./images/google-0.jpg" alt="Kuzz Kreations salon" loading="lazy" />
+          <img src="./images/google-1.jpg" alt="Burgundy loc updo at Kuzz Kreations" loading="lazy" />
         </div>
         <div class="copy" data-reveal>
           <p class="kicker">Our goal</p>
