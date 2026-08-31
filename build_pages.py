@@ -14,6 +14,7 @@ ADDRESS = "204 Dalhousie St, Brantford, ON N3S 3T7"
 MAPS = "https://www.google.com/maps/search/?api=1&query=Kuzz+Kreations+204+Dalhousie+St+Brantford"
 FACEBOOK = "https://www.facebook.com/profile.php?id=100078342901677"
 INSTAGRAM = "https://www.instagram.com/kuzzkreationshairstyles/"
+UPTISEMENT = "https://uptisement.com"
 GUEST_CARD = "https://docs.google.com/forms/d/e/1FAIpQLSe8gEEIcNVgdPCEuFpiiT0xWk4HIZdGW_JE8Sim-rZdKBl1oA/viewform"
 RATING = DATA["rating"]
 REVIEWS = DATA["reviewsCount"]
@@ -98,25 +99,60 @@ def nav(current: str) -> str:
   </div>"""
 
 
+def social_icons() -> str:
+    return f"""<div class="social-row" aria-label="Social profiles">
+          <a class="social-btn" href="{INSTAGRAM}" target="_blank" rel="noopener noreferrer" aria-label="Instagram @kuzzkreationshairstyles">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zM17.8 6.4a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
+          </a>
+          <a class="social-btn" href="{FACEBOOK}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 10.5V8.2c0-.8.2-1.2 1.1-1.2H16V4.6h-2.4C10.8 4.6 9 6.2 9 8.8v1.7H7v3.1h2v7.6h4v-7.6h2.7l.3-3.1z"/></svg>
+          </a>
+          <a class="social-btn" href="{MAPS}" target="_blank" rel="noopener noreferrer" aria-label="Google Maps">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z"/></svg>
+          </a>
+        </div>"""
+
+
 def footer(extra: str = "") -> str:
     return f"""  <footer class="site">
-    <div class="wrap">
-      <div>
-        <p class="brand-line">Kuzz Kreations</p>
-        <p>{e(ADDRESS)}</p>
+    <div class="wrap foot-main">
+      <div class="foot-brand">
+        <p class="brand-line">Kuzz <span>Kreations</span></p>
+        <p class="foot-tag">Hair · Beauty · Supplies · Brantford</p>
         <p><a href="tel:{PHONE_TEL}">{PHONE}</a></p>
+        <p><a href="{MAPS}" target="_blank" rel="noopener noreferrer">{e(ADDRESS)}</a></p>
       </div>
-      <div class="foot-grid">
-        <a href="./services.html">Services</a>
-        <a href="./gallery.html">Gallery</a>
-        <a href="./about.html">About</a>
-        <a href="./book.html">Book</a>
-        <a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a>
+      <div class="foot-col">
+        <p class="foot-heading">Explore</p>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="./services.html">Services</a>
+          <a href="./gallery.html">Gallery</a>
+          <a href="./about.html">About</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./book.html">Book</a>
+        </nav>
       </div>
-      <div class="foot-bottom">
-        <span>© <span id="y"></span> Kuzz Kreations</span>
-        <span>{RATING}★ · {REVIEWS} Google reviews</span>
+      <div class="foot-col">
+        <p class="foot-heading">Hours</p>
+        <ul class="foot-hours">
+          <li>Mon–Wed · 9:00 AM – 7:30 PM</li>
+          <li>Thu–Fri · 9:00 AM – 7:00 PM</li>
+          <li>Sat · 9:00 AM – 5:00 PM</li>
+          <li>Sun · Closed</li>
+        </ul>
       </div>
+      <div class="foot-col">
+        <p class="foot-heading">Follow us</p>
+        {social_icons()}
+        <p class="foot-handle"><a href="{INSTAGRAM}" target="_blank" rel="noopener noreferrer">@kuzzkreationshairstyles</a></p>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      <p>© <span id="y"></span> Kuzz Kreations · {RATING}★ · {REVIEWS} Google reviews</p>
+      <a class="foot-watermark" href="{UPTISEMENT}" target="_blank" rel="noopener noreferrer">
+        <img src="./images/uptisement-mark.png" alt="" width="18" height="18" loading="lazy" />
+        <span>Website by <strong>Uptisement</strong></span>
+      </a>
     </div>
   </footer>
   <div class="mobile-bar" aria-label="Quick actions">
