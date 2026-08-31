@@ -18,8 +18,9 @@ GUEST_CARD = "https://docs.google.com/forms/d/e/1FAIpQLSe8gEEIcNVgdPCEuFpiiT0xWk
 RATING = DATA["rating"]
 REVIEWS = DATA["reviewsCount"]
 HERO = DATA["images"]["hero"]
-HERO_SRC = f"./{HERO}?v=20260830-wendy"
+HERO_SRC = f"./{HERO}?v=20260831-wendy"
 GS = COPY["googleSites"]
+WENDY = COPY["wendy"]
 
 NAV = [
     ("services.html", "Services"),
@@ -211,7 +212,7 @@ def index() -> str:
       <div class="wrap" data-reveal>
         <p class="kicker">{e(COPY["home"]["treatmentsHeading"])}</p>
         <h2 class="title">{e(GS["fullServiceHeading"])}</h2>
-        <p class="lead">{e(COPY["home"]["intro"])}</p>
+        <p class="lead">{e(WENDY["fullServiceExperience"])}</p>
       </div>
     </section>
 
@@ -219,8 +220,8 @@ def index() -> str:
       <div class="wrap">
         <div data-reveal>
           <p class="kicker">Natural locs</p>
-          <h2 class="title">DreadLocks</h2>
-          <p class="lead">{e(next(s["copy"] for s in COPY["services"] if s["id"] == "locs"))}</p>
+          <h2 class="title">Natural Locs</h2>
+          <p class="lead">{e(WENDY["naturalLocs"])}</p>
         </div>
         <div class="style-rail" aria-label="Locs and salon services" data-stagger>
           {style_rail()}
@@ -247,7 +248,7 @@ def index() -> str:
         <div data-reveal>
           <p class="kicker">Salon service</p>
           <h2 class="title">{e(COPY["home"]["fullServiceHeading"])}</h2>
-          <p class="lead">{e(COPY["home"]["salonBlock"])}</p>
+          <p class="lead" style="margin-bottom:0">Browse our services below.</p>
         </div>
         <div class="card-grid" data-stagger>
           {service_cards()}
@@ -321,7 +322,7 @@ def services() -> str:
       <div class="wrap" data-reveal>
         <p class="kicker">Salon service</p>
         <h1 class="title">{e(locs["pageTitle"])}</h1>
-        <p class="lead">{e(COPY["home"]["intro"])}</p>
+        <p class="lead">{e(WENDY["fullServiceExperience"])}</p>
       </div>
     </header>
 
@@ -329,8 +330,8 @@ def services() -> str:
       <div class="wrap">
         <div data-reveal>
           <p class="kicker">Natural locs</p>
-          <h2 class="title">{e(locs["sectionTitle"])}</h2>
-          <p class="lead">{e(locs["intro"])}</p>
+          <h2 class="title">Natural Locs</h2>
+          <p class="lead">{e(WENDY["naturalLocs"])}</p>
         </div>
         <div class="card-grid" data-stagger>
           {chr(10).join(loc_sections)}
@@ -450,7 +451,7 @@ def about() -> str:
       <div class="wrap" data-reveal>
         <p class="kicker">{e(GS["fullServiceHeading"])}</p>
         <h1 class="title">{e(GS["heroTitle"])}</h1>
-        <p class="lead">{e(GS["about1"])}</p>
+        <p class="lead">{e(WENDY["fullServiceExperience"])}</p>
       </div>
     </header>
 

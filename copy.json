@@ -1,5 +1,9 @@
 {
-  "source": "kuzzkreations.ca + Google Sites — light typo fixes only. Reviews/address from Google Maps.",
+  "source": "kuzzkreations.ca + Google Sites + Wendy-approved copy 2026-08-31",
+  "wendy": {
+    "fullServiceExperience": "At Kuzz Kreations, we redefine beauty with precision, passion, and premium care. Located in the heart of Brantford, we offer a full-service salon experience specializing in expert loc styling and complete grooming for men and women. From fresh installations to meticulous maintenance, every service is delivered with artistry and attention to detail. We prioritize the health and integrity of your natural locs—using only premium products and techniques that nourish, protect, and elevate. Because you deserve more than a service. You deserve an experience.",
+    "naturalLocs": "Our signature dreadloc styles are as simple as they are stunning. We enhance each look with premium natural castor oil—rich in nutrients that encourage faster growth, increased thickness, and lasting scalp health. It's not just a style; it's an investment in your hair's future."
+  },
   "googleSites": {
     "heroTitle": "Look & Feel Beautiful",
     "heroSub": "The Best Service. The Best Styles.",
@@ -20,7 +24,7 @@
     {
       "id": "locs",
       "title": "DreadLocks",
-      "copy": "Simple Dreadlocks hairstyles. Using natural Castor Oil Which can also enhance hair growth, for longer and thicker hair.",
+      "copy": "Our signature dreadloc styles are as simple as they are stunning. We enhance each look with premium natural castor oil—rich in nutrients that encourage faster growth, increased thickness, and lasting scalp health. It's not just a style; it's an investment in your hair's future.",
       "featured": true
     },
     {
@@ -68,7 +72,7 @@
   "locs": {
     "pageTitle": "Dreadlocks Styles",
     "sectionTitle": "Locs Hairstyles",
-    "intro": "Natural Locs Hairstyle is a (highly tweakable, and extremely versatile) hairstyle. Whether you are wondering how to start Dreadlocks on Natural hair or the benefits of Locing your hair for the first time. re-styling your existing locs with an updo, or just having the freedom of leaving your hair alone.",
+    "intro": "Our signature dreadloc styles are as simple as they are stunning. We enhance each look with premium natural castor oil—rich in nutrients that encourage faster growth, increased thickness, and lasting scalp health. It's not just a style; it's an investment in your hair's future.",
     "sections": [
       {
         "title": "How to start Dreadlocks",
