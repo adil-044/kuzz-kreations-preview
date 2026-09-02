@@ -5,6 +5,13 @@ document.getElementById("y").textContent = new Date().getFullYear();
 const form = document.getElementById("book-form");
 const status = document.getElementById("status");
 const dateInput = document.getElementById("date");
+const stylistSelect = document.getElementById("stylist");
+
+const stylistFromUrl = new URLSearchParams(window.location.search).get("stylist");
+if (stylistSelect && stylistFromUrl) {
+  const match = [...stylistSelect.options].find((opt) => opt.value === stylistFromUrl);
+  if (match) stylistSelect.value = stylistFromUrl;
+}
 
 const tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
@@ -22,11 +29,16 @@ form.addEventListener("submit", (e) => {
   }
 
   const data = Object.fromEntries(new FormData(form).entries());
+  const stylistLabel =
+    stylistSelect && data.stylist
+      ? stylistSelect.options[stylistSelect.selectedIndex]?.text
+      : null;
   const lines = [
     "Kuzz Kreations booking request",
     `Name: ${data.name}`,
     `Phone: ${data.phone}`,
     data.email ? `Email: ${data.email}` : null,
+    stylistLabel ? `Stylist: ${stylistLabel}` : null,
     `Service: ${data.service}`,
     `Preferred: ${data.date} · ${data.time}`,
     data.notes ? `Notes: ${data.notes}` : null,

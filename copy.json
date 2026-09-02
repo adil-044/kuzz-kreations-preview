@@ -124,5 +124,48 @@
     "deposits": "A deposit of $50.00 is mandatory with all service this amount will be deducted from your total cost at the end of your service. Clients have 24 hours after booking to receive a full refund on their deposit.",
     "consult": "Schedule a Consultation call and leave a detailed message with your Number, so we can meet and help grow and embrace your natural hair Journey."
   },
-  "googleOwner": "Brantford's premiere salon for Color, Cuts, Cornrow Styles, Braids Extensions, Weave Extensions, Dreadlocks, Micro Locs, Crochet Braids and other natural styles. is a full-service beauty salon dedicated to consistently providing genuine customer care and satisfaction for clients by rendering excellent service, quality products, and an enjoyable atmosphere at an acceptable price/value. we will also maintain a friendly, fair, and creative work environment, which respects diversity, ideas, and hard work."
+  "googleOwner": "Brantford's premiere salon for Color, Cuts, Cornrow Styles, Braids Extensions, Weave Extensions, Dreadlocks, Micro Locs, Crochet Braids and other natural styles. is a full-service beauty salon dedicated to consistently providing genuine customer care and satisfaction for clients by rendering excellent service, quality products, and an enjoyable atmosphere at an acceptable price/value. we will also maintain a friendly, fair, and creative work environment, which respects diversity, ideas, and hard work.",
+  "team": {
+    "pageTitle": "Meet Our Team",
+    "intro": "Need to speak with a specific stylist? Browse our team below and book with who fits your style. Profiles are being updated as we confirm details with each stylist.",
+    "placeholderNote": "Placeholder profiles — Wendy will swap in real names, photos, and bios when her team responds.",
+    "members": [
+      {
+        "id": "stylist-1",
+        "initials": "S1",
+        "name": "Stylist One",
+        "role": "Hair Stylist",
+        "specialties": ["Natural locs", "Microlocs", "Loc maintenance"],
+        "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
+        "placeholder": true
+      },
+      {
+        "id": "stylist-2",
+        "initials": "S2",
+        "name": "Stylist Two",
+        "role": "Hair Stylist",
+        "specialties": ["Braids extensions", "Cornrows", "Men's braids"],
+        "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
+        "placeholder": true
+      },
+      {
+        "id": "stylist-3",
+        "initials": "S3",
+        "name": "Stylist Three",
+        "role": "Hair Stylist",
+        "specialties": ["Weave extensions", "Crochet braids", "Protective styles"],
+        "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
+        "placeholder": true
+      },
+      {
+        "id": "stylist-4",
+        "initials": "S4",
+        "name": "Stylist Four",
+        "role": "Hair Stylist",
+        "specialties": ["Hair color", "Cuts", "Olaplex treatments"],
+        "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
+        "placeholder": true
+      }
+    ]
+  }
 }

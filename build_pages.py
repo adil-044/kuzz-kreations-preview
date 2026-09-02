@@ -29,10 +29,12 @@ STYLE_RAIL_IMGS = {
 }
 GS = COPY["googleSites"]
 WENDY = COPY["wendy"]
+TEAM = COPY["team"]
 
 NAV = [
     ("services.html", "Services"),
     ("gallery.html", "Gallery"),
+    ("team.html", "Team"),
     ("about.html", "About"),
     ("contact.html", "Contact"),
     ("book.html", "Book"),
@@ -127,6 +129,7 @@ def footer(extra: str = "") -> str:
         <nav class="foot-links" aria-label="Footer">
           <a href="./services.html">Services</a>
           <a href="./gallery.html">Gallery</a>
+          <a href="./team.html">Team</a>
           <a href="./about.html">About</a>
           <a href="./contact.html">Contact</a>
           <a href="./book.html">Book</a>
@@ -541,6 +544,7 @@ def contact() -> str:
         <p class="kicker">Contact</p>
         <h1 class="title">{e(GS["stylistNote"])}</h1>
         <p class="lead">{e(COPY["home"]["bookBlock"])}</p>
+        <p style="margin-top:1rem"><a class="btn btn-soft" href="./team.html">Meet our stylists</a></p>
       </div>
     </header>
     <section class="section">
@@ -562,6 +566,148 @@ def contact() -> str:
           <dt>Guest card</dt>
           <dd><a href="{GUEST_CARD}" target="_blank" rel="noopener">Exclusive offers &amp; discounts</a></dd>
         </dl>
+      </div>
+    </section>
+  </main>
+"""
+        + footer()
+        + "\n</body>\n</html>\n"
+    )
+
+
+def specialty_tags(specialties: list) -> str:
+    return " ".join(f'<span class="tag">{e(s)}</span>' for s in specialties)
+
+
+def stylist_avatar(member: dict, large: bool = False) -> str:
+    cls = "stylist-avatar stylist-avatar-lg" if large else "stylist-avatar"
+    photo = member.get("photo")
+    if photo:
+        return f'<img class="{cls}" src="./{photo}" alt="{e(member["name"])}" loading="lazy" />'
+    return f'<div class="{cls}" aria-hidden="true">{e(member.get("initials", "?"))}</div>'
+
+
+def team_cards() -> str:
+    cards = []
+    for member in TEAM["members"]:
+        slug = member["id"]
+        badge = (
+            '<span class="pill pill-soft">Profile coming soon</span>'
+            if member.get("placeholder")
+            else ""
+        )
+        cards.append(
+            f"""<article class="stylist-card reveal-child">
+          <a class="stylist-card-link" href="./{slug}.html" aria-label="View {e(member['name'])} profile">
+            {stylist_avatar(member)}
+            <div class="stylist-card-body">
+              {badge}
+              <h2>{e(member["name"])}</h2>
+              <p class="stylist-role">{e(member["role"])}</p>
+              <div class="tag-row">{specialty_tags(member["specialties"])}</div>
+              <span class="card-link">View profile →</span>
+            </div>
+          </a>
+          <a class="btn btn-soft stylist-book" href="./book.html?stylist={slug}">Book with {e(member["name"])}</a>
+        </article>"""
+        )
+    return "\n        ".join(cards)
+
+
+def team() -> str:
+    return (
+        head(
+            "Our Team | Kuzz Kreations Brantford",
+            "Meet the stylists at Kuzz Kreations — natural locs, braids, extensions and salon services in Brantford.",
+        )
+        + preview_bar()
+        + nav("team.html")
+        + f"""
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap" data-reveal>
+        <p class="kicker">Our stylists</p>
+        <h1 class="title">{e(TEAM["pageTitle"])}</h1>
+        <p class="lead">{e(TEAM["intro"])}</p>
+        <p class="note team-note">{e(TEAM["placeholderNote"])}</p>
+      </div>
+    </header>
+    <section class="section">
+      <div class="wrap team-grid" data-stagger>
+        {team_cards()}
+      </div>
+      <p class="wrap" style="margin-top:2rem;text-align:center" data-reveal>
+        <a class="btn btn-primary" href="./book.html">Book any stylist</a>
+        <a class="btn btn-ghost" href="./contact.html">Questions? Contact us</a>
+      </p>
+    </section>
+  </main>
+"""
+        + footer()
+        + "\n</body>\n</html>\n"
+    )
+
+
+def stylist_profile(member: dict) -> str:
+    slug = member["id"]
+    others = [m for m in TEAM["members"] if m["id"] != slug]
+    other_links = "".join(
+        f'<a class="stylist-mini" href="./{m["id"]}.html">{stylist_avatar(m)}<span>{e(m["name"])}</span></a>'
+        for m in others[:3]
+    )
+    badge = (
+        '<p class="pill pill-soft" style="display:inline-block;margin-bottom:1rem">Profile coming soon</p>'
+        if member.get("placeholder")
+        else ""
+    )
+    return (
+        head(
+            f"{member['name']} | Kuzz Kreations Team",
+            f"Book {member['name']} at Kuzz Kreations Brantford — {', '.join(member['specialties'][:2])}.",
+        )
+        + preview_bar()
+        + nav("team.html")
+        + f"""
+  <main id="main">
+    <header class="page-hero stylist-hero">
+      <div class="wrap stylist-hero-grid" data-reveal>
+        {stylist_avatar(member, large=True)}
+        <div>
+          {badge}
+          <p class="kicker">Kuzz Kreations stylist</p>
+          <h1 class="title">{e(member["name"])}</h1>
+          <p class="stylist-role">{e(member["role"])}</p>
+          <div class="tag-row" style="margin-top:1rem">{specialty_tags(member["specialties"])}</div>
+          <div class="hero-actions" style="margin-top:1.5rem">
+            <a class="btn btn-primary" href="./book.html?stylist={slug}">Book with {e(member["name"])}</a>
+            <a class="btn btn-ghost" href="tel:{PHONE_TEL}">Call salon</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="section section-alt">
+      <div class="wrap split">
+        <div class="copy" data-reveal>
+          <p class="kicker">About</p>
+          <p>{e(member["bio"])}</p>
+          <p style="margin-top:1rem;color:var(--muted)">{e(COPY["locs"]["consult"])}</p>
+        </div>
+        <div class="card reveal-child">
+          <h3>Book this stylist</h3>
+          <p>Send a text with your service, date, and preferred time. Mention <strong>{e(member["name"])}</strong> so we match you with the right chair.</p>
+          <p style="margin-top:1rem"><a class="btn btn-primary" href="./book.html?stylist={slug}">Request appointment</a></p>
+          <p class="note" style="margin-top:1rem">{e(COPY["locs"]["deposits"])}</p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap" data-reveal>
+        <p class="kicker">More stylists</p>
+        <h2 class="title" style="font-size:1.75rem">Meet the rest of the team</h2>
+        <div class="stylist-mini-row" style="margin-top:1.25rem">
+          {other_links}
+          <a class="btn btn-ghost" href="./team.html">View all team</a>
+        </div>
       </div>
     </section>
   </main>
@@ -593,6 +739,13 @@ def book() -> str:
           <div class="field"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required placeholder="Your name" /></div>
           <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="Mobile number" /></div>
           <div class="field"><label for="email">Email (optional)</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" /></div>
+          <div class="field">
+            <label for="stylist">Preferred stylist</label>
+            <select id="stylist" name="stylist">
+              <option value="">No preference — first available</option>
+              {''.join(f'<option value="{e(m["id"])}">{e(m["name"])}</option>' for m in TEAM["members"])}
+            </select>
+          </div>
           <div class="field">
             <label for="service">Service</label>
             <select id="service" name="service" required>
@@ -654,10 +807,13 @@ if __name__ == "__main__":
         "index.html": index(),
         "services.html": services(),
         "gallery.html": gallery(),
+        "team.html": team(),
         "about.html": about(),
         "contact.html": contact(),
         "book.html": book(),
     }
+    for member in TEAM["members"]:
+        pages[f"{member['id']}.html"] = stylist_profile(member)
     for name, content in pages.items():
         (ROOT / name).write_text(content)
     print("Wrote", ", ".join(pages))

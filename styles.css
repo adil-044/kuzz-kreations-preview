@@ -447,6 +447,7 @@ footer.site a:hover { color: var(--coral); }
   .masonry { grid-template-columns: repeat(4, 1fr); }
   .masonry figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .masonry figure:nth-child(1) img { aspect-ratio: auto; height: 100%; min-height: 420px; }
+  .stylist-hero-grid { grid-template-columns: 280px 1fr; }
   footer.site .foot-main { grid-template-columns: 1.35fr 0.85fr 0.95fr 1fr; align-items: start; }
 }
 
@@ -503,6 +504,111 @@ body.has-preview .nav { top: 2rem; }
 .style-card .body { padding: 1rem 1.1rem 1.15rem; }
 .style-card h3 { margin: 0 0 0.35rem; font-family: var(--font-display); font-style: italic; font-size: 1.35rem; }
 .style-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+.team-note {
+  margin-top: 1rem;
+  max-width: 52ch;
+  color: color-mix(in oklch, var(--coral) 75%, var(--muted));
+  font-size: 0.92rem;
+}
+.team-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.stylist-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid var(--line);
+  background: color-mix(in oklch, var(--surface) 88%, transparent);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.stylist-card:hover { border-color: color-mix(in oklch, var(--coral) 45%, var(--line)); transform: translateY(-2px); }
+.stylist-card-link {
+  display: grid;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: inherit;
+}
+.stylist-card-body h2 {
+  margin: 0.35rem 0 0.15rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.45rem;
+}
+.stylist-role { margin: 0; color: var(--coral); font-size: 0.86rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.stylist-book { width: 100%; justify-content: center; }
+.stylist-avatar {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--radius) - 2px);
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 20%, color-mix(in oklch, var(--coral) 22%, transparent), transparent 60%),
+    color-mix(in oklch, var(--plum-mid) 80%, black);
+  border: 1px solid color-mix(in oklch, var(--line) 75%, transparent);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(2rem, 8vw, 3rem);
+  object-fit: cover;
+}
+.stylist-avatar-lg {
+  max-width: 280px;
+  aspect-ratio: 1;
+  font-size: 3.5rem;
+}
+.stylist-hero-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklch, var(--line) 70%, transparent);
+  background: color-mix(in oklch, var(--surface) 65%, transparent);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.pill-soft {
+  background: color-mix(in oklch, var(--coral) 14%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--coral) 35%, var(--line));
+  color: var(--ink);
+}
+.stylist-mini-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+.stylist-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0.75rem 0.45rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklch, var(--surface) 70%, transparent);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.stylist-mini:hover { border-color: var(--coral); color: var(--coral); }
+.stylist-mini .stylist-avatar {
+  width: 2.4rem;
+  aspect-ratio: 1;
+  font-size: 0.82rem;
+  border-radius: 999px;
+}
 
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
