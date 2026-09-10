@@ -4,10 +4,13 @@
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) {
-    document.querySelectorAll("[data-reveal], .reveal-child").forEach((el) => {
+    document.querySelectorAll("[data-reveal], .reveal-child, .locs-slide").forEach((el) => {
       el.style.opacity = "1";
       el.style.transform = "none";
       el.style.filter = "none";
+    });
+    document.querySelectorAll(".locs-slide").forEach((el, i) => {
+      if (i === 0) el.classList.add("is-active");
     });
     return;
   }
@@ -43,8 +46,86 @@
     });
   }
 
+  // Locs scroll stage — pin + scrub through real work
+  const stage = document.querySelector("[data-locs-stage]");
+  if (stage) {
+    const slides = gsap.utils.toArray("[data-locs-slide]", stage);
+    const dots = gsap.utils.toArray("[data-locs-dot]", stage);
+    const progress = stage.querySelector("[data-locs-progress]");
+    const pin = stage.querySelector(".locs-stage-pin");
+
+    const setActive = (index) => {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("is-active", i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === index);
+      });
+    };
+
+    if (slides.length > 1 && pin) {
+      const total = slides.length;
+      ScrollTrigger.create({
+        trigger: stage,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * (total * 0.85),
+        pin: pin,
+        scrub: 0.65,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          const idx = Math.min(total - 1, Math.floor(self.progress * total));
+          setActive(idx);
+          if (progress) progress.style.transform = `scaleX(${self.progress})`;
+        },
+      });
+
+      // Soft Ken Burns on active frame image
+      slides.forEach((slide) => {
+        const img = slide.querySelector("img");
+        if (!img) return;
+        gsap.fromTo(
+          img,
+          { scale: 1.08 },
+          {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: stage,
+              start: "top top",
+              end: () => "+=" + window.innerHeight * (total * 0.85),
+              scrub: true,
+            },
+          }
+        );
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const i = Number(dot.getAttribute("data-locs-dot") || 0);
+        setActive(i);
+        if (progress) progress.style.transform = `scaleX(${(i + 0.5) / slides.length})`;
+      });
+    });
+  }
+
+  // Infinite work marquee
+  const marquee = document.querySelector("[data-work-marquee] .work-marquee-track");
+  if (marquee) {
+    const half = marquee.scrollWidth / 2;
+    gsap.to(marquee, {
+      x: -half,
+      duration: 28,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize((x) => parseFloat(x) % -half),
+      },
+    });
+  }
+
   // Generic scroll reveals
-  gsap.utils.toArray("[data-reveal]").forEach((el, i) => {
+  gsap.utils.toArray("[data-reveal]").forEach((el) => {
     gsap.fromTo(
       el,
       { opacity: 0.2, y: 28, filter: "blur(5px)" },
@@ -70,13 +151,14 @@
     if (!kids.length) return;
     gsap.fromTo(
       kids,
-      { opacity: 0, y: 22, scale: 0.98 },
+      { opacity: 0, y: 36, scale: 0.96, rotate: 0.4 },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.7,
-        stagger: 0.08,
+        rotate: 0,
+        duration: 0.75,
+        stagger: 0.09,
         ease: "power2.out",
         scrollTrigger: {
           trigger: wrap,
@@ -112,13 +194,13 @@
   const rail = document.querySelector(".style-rail");
   if (rail && rail.scrollWidth > rail.clientWidth) {
     gsap.to(rail, {
-      scrollLeft: 80,
-      duration: 1.2,
+      scrollLeft: 100,
+      duration: 1.35,
       ease: "power1.inOut",
       yoyo: true,
       repeat: 1,
-      repeatDelay: 0.4,
-      delay: 1.5,
+      repeatDelay: 0.35,
+      delay: 1.2,
     });
   }
 
@@ -133,17 +215,17 @@
     });
   }
 
-  // Gallery figures
-  gsap.utils.toArray(".masonry figure").forEach((fig, i) => {
+  // Gallery figures — clip reveal
+  gsap.utils.toArray(".masonry figure, .gallery-tile").forEach((fig, i) => {
     gsap.fromTo(
       fig,
-      { opacity: 0, y: 20, scale: 0.97 },
+      { opacity: 0, y: 28, clipPath: "inset(12% 8% 12% 8% round 12px)" },
       {
         opacity: 1,
         y: 0,
-        scale: 1,
-        duration: 0.65,
-        delay: (i % 4) * 0.05,
+        clipPath: "inset(0% 0% 0% 0% round 12px)",
+        duration: 0.8,
+        delay: (i % 4) * 0.06,
         ease: "power2.out",
         scrollTrigger: {
           trigger: fig,

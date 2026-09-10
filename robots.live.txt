@@ -1,0 +1,6 @@
+# Live robots — use this filename as robots.txt on HostGator go-live.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://kuzzkreations.ca/sitemap.xml

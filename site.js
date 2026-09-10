@@ -23,4 +23,17 @@
     });
     drawer.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
   }
+
+  // Conversion hooks — no-op until track.js loaded with IDs + consent
+  const ping = (name, params) => {
+    if (window.kuzzTrack && typeof window.kuzzTrack.event === "function") {
+      window.kuzzTrack.event(name, params || {});
+    }
+  };
+  document.querySelectorAll('a[href^="tel:"]').forEach((a) => {
+    a.addEventListener("click", () => ping("phone_click", { link_url: a.href }));
+  });
+  document.querySelectorAll('a[href*="book.html"]').forEach((a) => {
+    a.addEventListener("click", () => ping("book_click", { link_url: a.getAttribute("href") }));
+  });
 })();

@@ -1,2 +1,5 @@
+# Preview robots — blocks indexing of GitHub Pages preview.
+# On HostGator go-live: REPLACE this file with robots.live.txt contents.
+
 User-agent: *
 Disallow: /

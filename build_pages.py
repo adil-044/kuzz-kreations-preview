@@ -27,6 +27,20 @@ STYLE_RAIL_IMGS = {
     "extensions": "images/google-1.jpg",
     "crochet": "images/google-2.jpg",
 }
+# Locs-first scroll showcase — Wendy IG work only (no stock)
+LOCS_WORK = [
+    img
+    for img in (DATA["images"].get("gallery") or [])
+    if "loc" in (img.get("caption") or "").lower()
+    or img["file"].startswith("images/ig-")
+][:5] or [
+    {"file": "images/ig-DbRdQS7OwNK.jpg", "caption": "Microlocs transformation"},
+    {"file": "images/ig-DTDxJLbkQXk.jpg", "caption": "Healthy locs"},
+    {"file": "images/ig-C4ORxdnRf4W.jpg", "caption": "Bridal locs"},
+    {"file": "images/ig-CiN0A2cp4j3.jpg", "caption": "Mahogany loc updo"},
+    {"file": "images/ig-C5E7jYWRrQJ.jpg", "caption": "Herbal oil steam treatment"},
+]
+CANONICAL_ORIGIN = "https://kuzzkreations.ca"
 GS = COPY["googleSites"]
 WENDY = COPY["wendy"]
 TEAM = COPY["team"]
@@ -51,7 +65,39 @@ def e(s: str) -> str:
     return html.escape(s or "")
 
 
-def head(title: str, desc: str, extra_script: str = "") -> str:
+def json_ld() -> str:
+    payload = {
+        "@context": "https://schema.org",
+        "@type": "HairSalon",
+        "name": "Kuzz Kreations",
+        "description": "Natural locs, braids, extensions and salon services in Brantford.",
+        "url": CANONICAL_ORIGIN + "/",
+        "telephone": PHONE_TEL,
+        "image": CANONICAL_ORIGIN + "/images/hero-ig-DTDxJLbkQXk.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "204 Dalhousie St",
+            "addressLocality": "Brantford",
+            "addressRegion": "ON",
+            "postalCode": "N3S 3T7",
+            "addressCountry": "CA",
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": str(RATING),
+            "reviewCount": str(REVIEWS),
+        },
+        "sameAs": [INSTAGRAM, FACEBOOK],
+    }
+    return (
+        '  <script type="application/ld+json">\n'
+        + json.dumps(payload, ensure_ascii=True)
+        + "\n  </script>"
+    )
+
+
+def head(title: str, desc: str, path: str = "/", extra_script: str = "") -> str:
+    url = CANONICAL_ORIGIN + (path if path.startswith("/") else "/" + path)
     return f"""<!DOCTYPE html>
 <html lang="en-CA">
 <head>
@@ -60,10 +106,18 @@ def head(title: str, desc: str, extra_script: str = "") -> str:
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}" />
   <meta name="theme-color" content="#1C0920" />
+  <link rel="canonical" href="{e(url)}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{e(title)}" />
+  <meta property="og:description" content="{e(desc)}" />
+  <meta property="og:url" content="{e(url)}" />
+  <meta property="og:image" content="{CANONICAL_ORIGIN}/images/hero-ig-DTDxJLbkQXk.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
+{json_ld()}
 </head>
 <body class="has-preview">"""
 
@@ -221,11 +275,63 @@ def style_rail() -> str:
     return "\n          ".join(cards)
 
 
+def locs_showcase() -> str:
+    """Scroll-driven locs work stage — GSAP ScrollTrigger, same stack."""
+    slides = []
+    dots = []
+    marquee = []
+    for i, img in enumerate(LOCS_WORK):
+        cap = (img.get("caption") or "Natural locs").split("\n")[0][:80]
+        active = " is-active" if i == 0 else ""
+        slides.append(
+            f"""<figure class="locs-slide{active}" data-locs-slide="{i}">
+            <img src="./{img['file']}" alt="{e(cap)}" width="1200" height="1500" {'fetchpriority="high"' if i == 0 else 'loading="lazy"'} />
+            <figcaption>
+              <span class="locs-step">0{i + 1}</span>
+              <span class="locs-cap">{e(cap)}</span>
+            </figcaption>
+          </figure>"""
+        )
+        dots.append(f'<button type="button" class="locs-dot{active}" data-locs-dot="{i}" aria-label="Show work {i + 1}"></button>')
+        marquee.append(
+            f'<div class="work-chip"><img src="./{img["file"]}" alt="" loading="lazy" width="160" height="200" /><span>{e(cap)}</span></div>'
+        )
+    return f"""
+    <section class="locs-stage" id="locs-work" aria-label="Natural locs work showcase" data-locs-stage>
+      <div class="locs-stage-pin">
+        <div class="wrap locs-stage-grid">
+          <div class="locs-stage-copy" data-reveal>
+            <p class="kicker">Signature craft</p>
+            <h2 class="title">Natural Locs, in motion</h2>
+            <p class="lead">{e(WENDY["naturalLocs"])}</p>
+            <p class="locs-hint">Scroll to walk through real client work</p>
+            <div class="locs-dots" role="tablist" aria-label="Locs work slides">{"".join(dots)}</div>
+            <p class="locs-cta-row">
+              <a class="btn btn-primary" href="./gallery.html">Full gallery</a>
+              <a class="btn btn-ghost" href="./book.html">Book locs</a>
+            </p>
+          </div>
+          <div class="locs-stage-frame" data-locs-frame>
+            {"".join(slides)}
+            <div class="locs-progress" aria-hidden="true"><span data-locs-progress></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="work-marquee" aria-hidden="true" data-work-marquee>
+      <div class="work-marquee-track">
+        {"".join(marquee)}
+        {"".join(marquee)}
+      </div>
+    </div>"""
+
+
 def index() -> str:
     return (
         head(
             "Kuzz Kreations | Look & Feel Beautiful — Brantford",
             f"Natural locs, braids, extensions & salon services in Brantford. {RATING}★ Google. 204 Dalhousie St.",
+            "/",
         )
         + preview_bar()
         + nav("")
@@ -259,13 +365,15 @@ def index() -> str:
         <p class="lead">{e(WENDY["fullServiceExperience"])}</p>
       </div>
     </section>
-
+"""
+        + locs_showcase()
+        + f"""
     <section class="section">
       <div class="wrap">
         <div data-reveal>
-          <p class="kicker">Natural locs</p>
-          <h2 class="title">Natural Locs</h2>
-          <p class="lead">{e(WENDY["naturalLocs"])}</p>
+          <p class="kicker">Services rail</p>
+          <h2 class="title">Locs, braids &amp; more</h2>
+          <p class="lead">Swipe through signature services — locs lead the way.</p>
         </div>
         <div class="style-rail" aria-label="Locs and salon services" data-stagger>
           {style_rail()}
@@ -357,6 +465,7 @@ def services() -> str:
         head(
             "Services | Dreadlocks, Braids, Extensions — Kuzz Kreations",
             "Natural locs, dreadlocks, braids, weave extensions, crochet, Olaplex & color in Brantford.",
+            "/services.html",
         )
         + preview_bar()
         + nav("services.html")
@@ -444,13 +553,14 @@ def gallery() -> str:
         cap = (img.get("caption") or "Kuzz Kreations salon work").split("\n")[0][:90]
         label = "Instagram" if img.get("source") == "instagram" else "Google"
         figures.append(
-            f'<figure class="reveal-child"><img src="./{img["file"]}" alt="{e(cap)}" loading="lazy" /><figcaption>{label} · {e(cap)}</figcaption></figure>'
+            f'<figure class="gallery-tile reveal-child"><img src="./{img["file"]}" alt="{e(cap)}" loading="lazy" /><figcaption><span class="gallery-src">{label}</span><span class="gallery-cap">{e(cap)}</span></figcaption></figure>'
         )
 
     return (
         head(
             "Gallery | Kuzz Kreations Brantford",
             "Real locs, braids and salon work from Instagram and Google.",
+            "/gallery.html",
         )
         + preview_bar()
         + nav("gallery.html")
@@ -464,7 +574,7 @@ def gallery() -> str:
       </div>
     </header>
     <section class="section">
-      <div class="wrap masonry">
+      <div class="wrap masonry" data-stagger data-gallery>
         {''.join(figures)}
       </div>
       <p class="wrap" style="margin-top:1.5rem;text-align:center" data-reveal>
@@ -483,6 +593,7 @@ def about() -> str:
         head(
             "About | Kuzz Kreations Hair & Beauty Salon",
             GS["about1"][:120],
+            "/about.html",
         )
         + preview_bar()
         + nav("about.html")
@@ -534,7 +645,7 @@ def about() -> str:
 
 def contact() -> str:
     return (
-        head("Contact | Kuzz Kreations Brantford", f"204 Dalhousie St · {PHONE}")
+        head("Contact | Kuzz Kreations Brantford", f"204 Dalhousie St · {PHONE}", "/contact.html")
         + preview_bar()
         + nav("contact.html")
         + f"""
@@ -619,6 +730,7 @@ def team() -> str:
         head(
             "Our Team | Kuzz Kreations Brantford",
             "Meet the stylists at Kuzz Kreations — natural locs, braids, extensions and salon services in Brantford.",
+            "/team.html",
         )
         + preview_bar()
         + nav("team.html")
@@ -664,6 +776,7 @@ def stylist_profile(member: dict) -> str:
         head(
             f"{member['name']} | Kuzz Kreations Team",
             f"Book {member['name']} at Kuzz Kreations Brantford — {', '.join(member['specialties'][:2])}.",
+            f"/{member['id']}.html",
         )
         + preview_bar()
         + nav("team.html")
@@ -719,7 +832,7 @@ def stylist_profile(member: dict) -> str:
 
 def book() -> str:
     return (
-        head("Book | Kuzz Kreations Brantford", COPY["home"]["bookBlock"][:140])
+        head("Book | Kuzz Kreations Brantford", COPY["home"]["bookBlock"][:140], "/book.html")
         + preview_bar()
         + nav("book.html")
         + f"""

@@ -1,0 +1,31 @@
+# Kuzz Kreations
+
+> Brantford, Ontario hair & beauty salon specializing in natural locs, microlocs, dreadlocks, braids, weave extensions, crochet braids, color, and treatments.
+
+## Site
+
+- Home: https://kuzzkreations.ca/
+- Services: https://kuzzkreations.ca/services.html
+- Gallery: https://kuzzkreations.ca/gallery.html
+- About: https://kuzzkreations.ca/about.html
+- Team: https://kuzzkreations.ca/team.html
+- Book: https://kuzzkreations.ca/book.html
+- Contact: https://kuzzkreations.ca/contact.html
+
+## Contact
+
+- Phone / SMS booking: +1-519-209-8803
+- Address: 204 Dalhousie St, Brantford, ON N3S 3T7, Canada
+- Instagram: https://www.instagram.com/kuzzkreationshairstyles/
+- Facebook: https://www.facebook.com/profile.php?id=100078342901677
+- Google rating: 4.7★ · 53 reviews
+
+## Booking
+
+- Primary: call or SMS request via the Book page
+- Guest card (offers): Google Form linked from the site
+
+## Optional
+
+- Sitemap: https://kuzzkreations.ca/sitemap.xml
+- Robots: https://kuzzkreations.ca/robots.txt
