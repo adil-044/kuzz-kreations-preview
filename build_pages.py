@@ -278,6 +278,7 @@ def style_rail() -> str:
 def locs_showcase() -> str:
     """Scroll-driven locs work stage — GSAP ScrollTrigger, same stack."""
     slides = []
+    caps = []
     dots = []
     marquee = []
     for i, img in enumerate(LOCS_WORK):
@@ -285,16 +286,20 @@ def locs_showcase() -> str:
         active = " is-active" if i == 0 else ""
         slides.append(
             f"""<figure class="locs-slide{active}" data-locs-slide="{i}">
-            <img src="./{img['file']}" alt="{e(cap)}" width="1200" height="1500" {'fetchpriority="high"' if i == 0 else 'loading="lazy"'} />
-            <figcaption>
-              <span class="locs-step">0{i + 1}</span>
-              <span class="locs-cap">{e(cap)}</span>
-            </figcaption>
+            <div class="locs-matte">
+              <img src="./{img['file']}" alt="{e(cap)}" width="1200" height="1200" {'fetchpriority="high"' if i == 0 else 'loading="lazy"'} />
+            </div>
           </figure>"""
+        )
+        caps.append(
+            f"""<div class="locs-cap-row{active}" data-locs-cap="{i}">
+            <span class="locs-step">0{i + 1}</span>
+            <span class="locs-cap">{e(cap)}</span>
+          </div>"""
         )
         dots.append(f'<button type="button" class="locs-dot{active}" data-locs-dot="{i}" aria-label="Show work {i + 1}"></button>')
         marquee.append(
-            f'<div class="work-chip"><img src="./{img["file"]}" alt="" loading="lazy" width="160" height="200" /><span>{e(cap)}</span></div>'
+            f'<div class="work-chip"><span class="work-chip-matte"><img src="./{img["file"]}" alt="" loading="lazy" width="160" height="160" /></span><span>{e(cap)}</span></div>'
         )
     return f"""
     <section class="locs-stage" id="locs-work" aria-label="Natural locs work showcase" data-locs-stage>
@@ -311,14 +316,19 @@ def locs_showcase() -> str:
               <a class="btn btn-ghost" href="./book.html">Book locs</a>
             </p>
           </div>
-          <div class="locs-stage-frame" data-locs-frame>
-            {"".join(slides)}
+          <div class="locs-stage-shell">
+            <div class="locs-stage-frame" data-locs-frame>
+              {"".join(slides)}
+            </div>
+            <div class="locs-captions" aria-live="polite">
+              {"".join(caps)}
+            </div>
             <div class="locs-progress" aria-hidden="true"><span data-locs-progress></span></div>
           </div>
         </div>
       </div>
     </section>
-    <div class="work-marquee" aria-hidden="true" data-work-marquee>
+    <div class="work-marquee trust-strip" aria-hidden="true" data-work-marquee>
       <div class="work-marquee-track">
         {"".join(marquee)}
         {"".join(marquee)}

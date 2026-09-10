@@ -61,6 +61,9 @@
       dots.forEach((dot, i) => {
         dot.classList.toggle("is-active", i === index);
       });
+      stage.querySelectorAll("[data-locs-cap]").forEach((cap, i) => {
+        cap.classList.toggle("is-active", i === index);
+      });
     };
 
     if (slides.length > 1 && pin) {
@@ -79,13 +82,13 @@
         },
       });
 
-      // Soft Ken Burns on active frame image
+      // Soft drift inside matte — never bleeds past frame
       slides.forEach((slide) => {
-        const img = slide.querySelector("img");
+        const img = slide.querySelector(".locs-matte img");
         if (!img) return;
         gsap.fromTo(
           img,
-          { scale: 1.08 },
+          { scale: 1.03 },
           {
             scale: 1,
             ease: "none",
@@ -169,15 +172,15 @@
     );
   });
 
-  // Split / parallax images
+  // Split / parallax — gentle drift, stay inside matte
   gsap.utils.toArray("[data-parallax]").forEach((wrap) => {
     const img = wrap.querySelector("img");
     if (!img) return;
     gsap.fromTo(
       img,
-      { yPercent: -8, scale: 1.08 },
+      { yPercent: -3, scale: 1.02 },
       {
-        yPercent: 8,
+        yPercent: 3,
         scale: 1,
         ease: "none",
         scrollTrigger: {
