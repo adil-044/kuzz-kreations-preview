@@ -245,18 +245,22 @@ def reviews_block() -> str:
     </section>"""
 
 
+def svc_href(s: dict) -> str:
+    return "./" + (s.get("page") or f"services.html#{s['id']}")
+
+
 def service_cards(featured_first: bool = True) -> str:
     svcs = sorted(COPY["services"], key=lambda s: (0 if s.get("featured") else 1))
     cards = []
     for s in svcs:
-        cls = "card reveal-child locs-feature" if s.get("featured") else "card reveal-child"
-        link = "./services.html#locs" if s["id"] == "locs" else f'./services.html#{s["id"]}'
+        cls = "card card-hit reveal-child locs-feature" if s.get("featured") else "card card-hit reveal-child"
+        href = svc_href(s)
         cards.append(
-            f"""<article class="{cls}">
+            f"""<a class="{cls}" href="{href}">
             <h3>{e(s["title"])}</h3>
             <p>{e(s["copy"])}</p>
-            <a class="card-link" href="{link}">Learn more →</a>
-          </article>"""
+            <span class="card-link">Learn more →</span>
+          </a>"""
         )
     return "\n          ".join(cards)
 
@@ -265,9 +269,9 @@ def style_rail() -> str:
     locs_svcs = [s for s in COPY["services"] if s["id"] in ("locs", "braids", "extensions", "crochet")]
     cards = []
     for s in locs_svcs:
-        img = STYLE_RAIL_IMGS.get(s["id"], HERO)
+        img = s.get("image") or STYLE_RAIL_IMGS.get(s["id"], HERO)
         cards.append(
-            f"""<a class="style-card reveal-child" href="./services.html#{s['id']}">
+            f"""<a class="style-card reveal-child" href="{svc_href(s)}">
           <img src="./{img}" alt="{e(s['title'])}" loading="lazy" width="300" height="375" />
           <div class="body"><h3>{e(s['title'])}</h3><p>{e(s['copy'])}</p></div>
         </a>"""
@@ -312,7 +316,7 @@ def locs_showcase() -> str:
             <p class="locs-hint">Scroll to walk through real client work</p>
             <div class="locs-dots" role="tablist" aria-label="Locs work slides">{"".join(dots)}</div>
             <p class="locs-cta-row">
-              <a class="btn btn-primary" href="./gallery.html">Full gallery</a>
+              <a class="btn btn-primary" href="./locs.html">Natural locs</a>
               <a class="btn btn-ghost" href="./book.html">Book locs</a>
             </p>
           </div>
@@ -455,26 +459,22 @@ def index() -> str:
 
 
 def services() -> str:
-    locs = COPY["locs"]
-    loc_sections = []
-    for sec in locs["sections"]:
-        loc_sections.append(
-            f'<article class="card reveal-child locs-feature"><h3>{e(sec["title"])}</h3><p>{e(sec["copy"])}</p></article>'
+    """SEO hub — links to every dedicated service landing page."""
+    hub_cards = []
+    for s in sorted(COPY["services"], key=lambda x: (0 if x.get("featured") else 1)):
+        img = s.get("image") or HERO
+        hub_cards.append(
+            f"""<a class="card card-hit reveal-child{' locs-feature' if s.get('featured') else ''}" href="{svc_href(s)}">
+            <div class="card-thumb"><img src="./{img}" alt="" loading="lazy" width="640" height="400" /></div>
+            <h3>{e(s["title"])}</h3>
+            <p>{e(s["copy"])}</p>
+            <span class="card-link">Open page →</span>
+          </a>"""
         )
-    other = [s for s in COPY["services"] if s["id"] != "locs"]
-    other_cards = []
-    for s in other:
-        other_cards.append(
-            f'<article class="card reveal-child" id="{s["id"]}"><h3>{e(s["title"])}</h3><p>{e(s["copy"])}</p></article>'
-        )
-    benefit_cards = []
-    for b in locs["benefits"]:
-        benefit_cards.append(f'<article class="card reveal-child"><h3>{e(b["title"])}</h3><p>{e(b["copy"])}</p></article>')
-
     return (
         head(
-            "Services | Dreadlocks, Braids, Extensions — Kuzz Kreations",
-            "Natural locs, dreadlocks, braids, weave extensions, crochet, Olaplex & color in Brantford.",
+            "Services | Locs, Braids, Extensions — Kuzz Kreations Brantford",
+            "Browse natural locs, dreadlocks, braids, weave extensions, crochet, Olaplex and color in Brantford.",
             "/services.html",
         )
         + preview_bar()
@@ -484,70 +484,117 @@ def services() -> str:
     <header class="page-hero">
       <div class="wrap" data-reveal>
         <p class="kicker">Salon service</p>
-        <h1 class="title">{e(locs["pageTitle"])}</h1>
+        <h1 class="title">Our services</h1>
         <p class="lead">{e(WENDY["fullServiceExperience"])}</p>
       </div>
     </header>
 
-    <section class="section" id="locs">
+    <section class="section">
+      <div class="wrap">
+        <div class="card-grid card-grid-media" data-stagger>
+          {chr(10).join(hub_cards)}
+        </div>
+        <p style="margin-top:1.75rem;text-align:center" data-reveal>
+          <a class="btn btn-primary" href="./book.html">Book a service</a>
+        </p>
+      </div>
+    </section>
+  </main>
+"""
+        + footer()
+        + "\n</body>\n</html>\n"
+    )
+
+
+def service_landing(s: dict) -> str:
+    """Dedicated SEO landing page for one service (Wendy card pattern)."""
+    page = s["page"]
+    img = s.get("image") or HERO
+    related = [x for x in COPY["services"] if x["id"] != s["id"]][:4]
+    related_html = "\n".join(
+        f'<a class="chip-link" href="{svc_href(x)}">{e(x["title"])}</a>' for x in related
+    )
+
+    extra_sections = ""
+    if s["id"] == "locs":
+        locs = COPY["locs"]
+        blocks = "\n".join(
+            f'<article class="card reveal-child locs-feature"><h3>{e(sec["title"])}</h3><p>{e(sec["copy"])}</p></article>'
+            for sec in locs["sections"]
+        )
+        benefits = "\n".join(
+            f'<article class="card reveal-child"><h3>{e(b["title"])}</h3><p>{e(b["copy"])}</p></article>'
+            for b in locs["benefits"]
+        )
+        extra_sections = f"""
+    <section class="section section-alt">
       <div class="wrap">
         <div data-reveal>
-          <p class="kicker">Natural locs</p>
-          <h2 class="title">Natural Locs</h2>
-          <p class="lead">{e(WENDY["naturalLocs"])}</p>
+          <p class="kicker">{e(locs["sectionTitle"])}</p>
+          <h2 class="title">{e(locs["journeyTitle"])}</h2>
+          <p class="lead">{e(locs["journey"])}</p>
         </div>
-        <div class="card-grid" data-stagger>
-          {chr(10).join(loc_sections)}
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="wrap split">
-        <div class="parallax-wrap" data-parallax>
-          <img src="./images/ig-C4ORxdnRf4W.jpg" alt="Locs styles" loading="lazy" />
-        </div>
-        <div class="copy" data-reveal>
-          <p class="kicker">{e(locs["journeyTitle"])}</p>
-          <h2 class="title">{e(locs["benefitsTitle"])}</h2>
-          <p>{e(locs["journey"])}</p>
+        <div class="card-grid" data-stagger style="margin-top:1.25rem">
+          {blocks}
         </div>
       </div>
     </section>
-
     <section class="section">
       <div class="wrap">
         <div data-reveal>
           <p class="kicker">{e(locs["benefitsTitle"])}</p>
         </div>
         <div class="card-grid" data-stagger>
-          {chr(10).join(benefit_cards)}
+          {benefits}
         </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="wrap">
-        <div data-reveal>
-          <p class="kicker">More services</p>
-          <h2 class="title">{e(COPY["home"]["fullServiceHeading"])}</h2>
-        </div>
-        <div class="card-grid" data-stagger>
-          {chr(10).join(other_cards)}
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="card-grid" data-stagger>
+        <div class="card-grid" data-stagger style="margin-top:1.25rem">
           <article class="card reveal-child"><h3>Disclaimer</h3><p>{e(locs["disclaimer"])}</p></article>
           <article class="card reveal-child"><h3>Deposits</h3><p>{e(locs["deposits"])}</p></article>
           <article class="card reveal-child"><h3>Consultation</h3><p>{e(locs["consult"])}</p></article>
         </div>
-        <p style="margin-top:1.75rem;text-align:center" data-reveal>
-          <a class="btn btn-primary" href="./book.html">Book a service</a>
+      </div>
+    </section>"""
+
+    return (
+        head(s["seoTitle"], s["seoDesc"], "/" + page)
+        + preview_bar()
+        + nav("services.html")
+        + f"""
+  <main id="main">
+    <header class="page-hero">
+      <div class="wrap" data-reveal>
+        <p class="kicker"><a href="./services.html" class="crumb">Services</a> · Brantford</p>
+        <h1 class="title">{e(s["title"])}</h1>
+        <p class="lead">{e(s["copy"] if s["id"] != "locs" else WENDY["naturalLocs"])}</p>
+        <p class="hero-actions" style="margin-top:1.25rem">
+          <a class="btn btn-primary" href="./book.html">Book this service</a>
+          <a class="btn btn-ghost" href="./gallery.html">See our work</a>
         </p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="wrap split">
+        <div class="parallax-wrap" data-parallax>
+          <img src="./{img}" alt="{e(s["title"])} at Kuzz Kreations" loading="eager" width="1200" height="900" />
+        </div>
+        <div class="copy" data-reveal>
+          <p class="kicker">At the salon</p>
+          <h2 class="title">{e(s["title"])}</h2>
+          <p>{e(s["copy"])}</p>
+          <p style="margin-top:1rem;color:var(--muted)">{e(COPY["home"]["salonBlock"])}</p>
+          <p style="margin-top:1.25rem">
+            <a class="btn btn-primary" href="./book.html">Book appointment</a>
+          </p>
+        </div>
+      </div>
+    </section>
+{extra_sections}
+    <section class="section section-alt">
+      <div class="wrap" data-reveal>
+        <p class="kicker">Explore more</p>
+        <h2 class="title">Related services</h2>
+        <div class="chip-row">{related_html}</div>
       </div>
     </section>
   </main>
@@ -937,6 +984,9 @@ if __name__ == "__main__":
     }
     for member in TEAM["members"]:
         pages[f"{member['id']}.html"] = stylist_profile(member)
+    for svc in COPY["services"]:
+        if svc.get("page"):
+            pages[svc["page"]] = service_landing(svc)
     for name, content in pages.items():
         (ROOT / name).write_text(content)
     print("Wrote", ", ".join(pages))

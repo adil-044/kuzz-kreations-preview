@@ -23,44 +23,84 @@
   "services": [
     {
       "id": "locs",
+      "page": "locs.html",
+      "oldPages": ["dreads.html"],
+      "seoTitle": "Natural Locs & Dreadlocks in Brantford | Kuzz Kreations",
+      "seoDesc": "Natural locs, microlocs and dreadlock styles in Brantford. Castor oil care, installs, retightens. Book at Kuzz Kreations.",
       "title": "Natural Locs",
       "copy": "Our signature dreadloc styles are as simple as they are stunning. We enhance each look with premium natural castor oil—rich in nutrients that encourage faster growth, increased thickness, and lasting scalp health. It's not just a style; it's an investment in your hair's future.",
+      "image": "images/ig-DbRdQS7OwNK.jpg",
       "featured": true
     },
     {
       "id": "extensions",
+      "page": "weave-extensions.html",
+      "oldPages": ["weave_extensions.html"],
+      "seoTitle": "Hair Extensions & Weave in Brantford | Kuzz Kreations",
+      "seoDesc": "Weave and hair extensions in Brantford — protective styles that boost length and volume. Book at Kuzz Kreations.",
       "title": "Hair Extensions",
-      "copy": "Let our Weave Extensions do their Magic. A protective way in boosting your style."
+      "copy": "Let our Weave Extensions do their Magic. A protective way in boosting your style.",
+      "image": "images/google-1.jpg"
     },
     {
       "id": "braids",
+      "page": "braids-extensions.html",
+      "oldPages": ["braidsextensions.html"],
+      "seoTitle": "Braids Extensions in Brantford | Kuzz Kreations",
+      "seoDesc": "Braids extensions and protective braid styles for healthy hair growth in Brantford. Book Kuzz Kreations.",
       "title": "Braids Extensions",
-      "copy": "Braids hairstyles and different types of twists for guys to ensure healthy hair growth."
+      "copy": "Braids hairstyles and different types of twists for guys to ensure healthy hair growth.",
+      "image": "images/google-5.jpg"
     },
     {
       "id": "color",
+      "page": "hair-color.html",
+      "oldPages": [],
+      "seoTitle": "Hair Cut & Color in Brantford | Kuzz Kreations",
+      "seoDesc": "Hair cuts, balayage, ombre and color in natural blonde, brown and red hues. Brantford salon — Kuzz Kreations.",
       "title": "Hair Cut & Hair Color",
-      "copy": "Make a dramatic color change from soft balayage and ombre blends in natural hues of blonde, brown and red."
+      "copy": "Make a dramatic color change from soft balayage and ombre blends in natural hues of blonde, brown and red.",
+      "image": "images/google-2.jpg"
     },
     {
       "id": "mens",
+      "page": "braids-for-men.html",
+      "oldPages": ["braids-for-men.html"],
+      "seoTitle": "Mens Braids Styles in Brantford | Kuzz Kreations",
+      "seoDesc": "Men's braids styled with care for healthy hair growth in Brantford. Book at Kuzz Kreations.",
       "title": "Mens Braids Styles",
-      "copy": "Men Braids styles the way you want them, with care to ensure healthy hair growth and style."
+      "copy": "Men Braids styles the way you want them, with care to ensure healthy hair growth and style.",
+      "image": "images/google-5.jpg"
     },
     {
       "id": "crochet",
+      "page": "crochet-braids.html",
+      "oldPages": ["crochetbraids.html"],
+      "seoTitle": "Crochet Braids in Brantford | Kuzz Kreations",
+      "seoDesc": "Crochet braids and protective styles with healthy hair care in Brantford. Book Kuzz Kreations.",
       "title": "Crochet Braids",
-      "copy": "Healthy hair care begins with an exfoliating cleanse to remove product build up"
+      "copy": "Healthy hair care begins with an exfoliating cleanse to remove product build up",
+      "image": "images/google-2.jpg"
     },
     {
       "id": "olaplex",
+      "page": "olaplex.html",
+      "oldPages": [],
+      "seoTitle": "Olaplex Hair Treatments in Brantford | Kuzz Kreations",
+      "seoDesc": "Olaplex bond-building treatments to repair damage and fight frizz. Brantford — Kuzz Kreations.",
       "title": "Olaplex Hair Treatments",
-      "copy": "Rejuvenate your hair with our penetrating hair treatment service, that repairs damaged hair, and fight the battle of frizzy hair."
+      "copy": "Rejuvenate your hair with our penetrating hair treatment service, that repairs damaged hair, and fight the battle of frizzy hair.",
+      "image": "images/ig-C5E7jYWRrQJ.jpg"
     },
     {
       "id": "relaxer",
+      "page": "relaxer.html",
+      "oldPages": [],
+      "seoTitle": "Perm Relaxer in Brantford | Kuzz Kreations",
+      "seoDesc": "Healthy perm relaxer techniques in Brantford. Book a consult at Kuzz Kreations.",
       "title": "Perm Relaxer",
-      "copy": "While some People go to great lengths for hair growth and to straighten process, we provide the best relaxer technique for healthy hair"
+      "copy": "While some People go to great lengths for hair growth and to straighten process, we provide the best relaxer technique for healthy hair",
+      "image": "images/google-1.jpg"
     }
   ],
   "products": {

@@ -1,0 +1,14 @@
+# HostGator — drop beside site files on kuzzkreations.ca
+# Maps old HTML5 UP filenames → new SEO service pages
+
+RewriteEngine On
+
+# Old service landings
+RewriteRule ^dreads\.html$ /locs.html [R=301,L]
+RewriteRule ^braidsextensions\.html$ /braids-extensions.html [R=301,L]
+RewriteRule ^weave_extensions\.html$ /weave-extensions.html [R=301,L]
+RewriteRule ^crochetbraids\.html$ /crochet-braids.html [R=301,L]
+RewriteRule ^service\.html$ /services.html [R=301,L]
+RewriteRule ^contactus\.html$ /contact.html [R=301,L]
+
+# braids-for-men.html keeps same filename
