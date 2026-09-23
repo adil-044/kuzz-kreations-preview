@@ -116,7 +116,7 @@ def head(title: str, desc: str, path: str = "/", extra_script: str = "") -> str:
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;1,6..96,500;1,6..96,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=20260922-seo" />
 {json_ld()}
 </head>
 <body class="has-preview">"""
@@ -126,13 +126,48 @@ def preview_bar() -> str:
     return """  <div class="preview-bar" role="status">Preview for Wendy — her copy &amp; photos · tell us what to change before HostGator delivery</div>"""
 
 
-def nav(current: str) -> str:
+def service_drop_items(active_page: str = "") -> str:
+    links = []
+    for s in COPY["services"]:
+        href = s["page"]
+        cur = ' aria-current="page"' if href == active_page else ""
+        links.append(f'<li><a href="./{href}"{cur}>{e(s["title"])}</a></li>')
+    return "\n".join(links)
+
+
+def nav(current: str, service_page: str = "") -> str:
     items = []
     for href, label in NAV:
         cur = ' aria-current="page"' if href == current else ""
         cls = ' class="btn btn-primary"' if label == "Book" else ""
-        items.append(f'<li><a href="./{href}"{cls}{cur}>{label}</a></li>')
-    drawer = "\n".join(f'<li><a href="./{h}">{l}</a></li>' for h, l in [("", "Home"), *NAV])
+        if label == "Services":
+            open_cls = " is-open" if current == "services.html" or service_page else ""
+            items.append(
+                f"""<li class="nav-item has-drop{open_cls}">
+          <a href="./{href}"{cur} class="nav-parent" aria-haspopup="true">{label}</a>
+          <ul class="nav-drop" aria-label="Service categories">
+            <li><a href="./services.html">All services</a></li>
+            {service_drop_items(service_page)}
+          </ul>
+        </li>"""
+            )
+        else:
+            items.append(f'<li><a href="./{href}"{cls}{cur}>{label}</a></li>')
+
+    drawer_svc = "\n".join(
+        f'<li class="drawer-sub"><a href="./{s["page"]}">{e(s["title"])}</a></li>'
+        for s in COPY["services"]
+    )
+    drawer_bits = [
+        '<li><a href="./">Home</a></li>',
+        '<li><a href="./services.html">Services</a></li>',
+        drawer_svc,
+    ]
+    for href, label in NAV:
+        if label == "Services":
+            continue
+        drawer_bits.append(f'<li><a href="./{href}">{label}</a></li>')
+
     return f"""  <a class="skip" href="#main">Skip to content</a>
   <header class="nav">
     <a class="logo" href="./">Kuzz <em>Kreations</em></a>
@@ -148,7 +183,7 @@ def nav(current: str) -> str:
     <div class="drawer-panel">
       <button class="btn btn-ghost" type="button" data-nav-close>Close</button>
       <ul>
-        {drawer}
+        {''.join(drawer_bits)}
         <li><a href="tel:{PHONE_TEL}">Call {PHONE}</a></li>
       </ul>
     </div>
@@ -510,17 +545,21 @@ def service_landing(s: dict) -> str:
     """Dedicated SEO landing page for one service (Wendy card pattern)."""
     page = s["page"]
     img = s.get("image") or HERO
+    lead = s.get("intro") or s.get("copy") or ""
+    if s["id"] == "locs":
+        lead = WENDY.get("naturalLocs") or lead
     related = [x for x in COPY["services"] if x["id"] != s["id"]][:4]
     related_html = "\n".join(
         f'<a class="chip-link" href="{svc_href(x)}">{e(x["title"])}</a>' for x in related
     )
 
-    extra_sections = ""
+    sections = s.get("sections") or []
     if s["id"] == "locs":
         locs = COPY["locs"]
+        sections = locs.get("sections") or sections
         blocks = "\n".join(
             f'<article class="card reveal-child locs-feature"><h3>{e(sec["title"])}</h3><p>{e(sec["copy"])}</p></article>'
-            for sec in locs["sections"]
+            for sec in sections
         )
         benefits = "\n".join(
             f'<article class="card reveal-child"><h3>{e(b["title"])}</h3><p>{e(b["copy"])}</p></article>'
@@ -554,18 +593,44 @@ def service_landing(s: dict) -> str:
         </div>
       </div>
     </section>"""
+    else:
+        blocks = "\n".join(
+            f'<article class="seo-block reveal-child"><h3>{e(sec["title"])}</h3><p>{e(sec["copy"])}</p></article>'
+            for sec in sections
+        )
+        extra_sections = f"""
+    <section class="section section-alt seo-body">
+      <div class="wrap">
+        <div data-reveal>
+          <p class="kicker">What to know</p>
+          <h2 class="title">{e(s["title"])} in Brantford</h2>
+          <p class="lead">{e(lead)}</p>
+        </div>
+        <div class="seo-blocks" data-stagger style="margin-top:1.5rem">
+          {blocks}
+        </div>
+        <div class="card" data-reveal style="margin-top:1.5rem">
+          <h3>Ready to book?</h3>
+          <p>Photos help us quote accurately. Share length, density, and the look you want — then reserve your chair online or call {PHONE}.</p>
+          <p style="margin-top:1rem">
+            <a class="btn btn-primary" href="./book.html">Book {e(s["title"])}</a>
+            <a class="btn btn-ghost" href="tel:{PHONE_TEL}">Call {PHONE}</a>
+          </p>
+        </div>
+      </div>
+    </section>"""
 
     return (
         head(s["seoTitle"], s["seoDesc"], "/" + page)
         + preview_bar()
-        + nav("services.html")
+        + nav("services.html", service_page=page)
         + f"""
   <main id="main">
     <header class="page-hero">
       <div class="wrap" data-reveal>
         <p class="kicker"><a href="./services.html" class="crumb">Services</a> · Brantford</p>
         <h1 class="title">{e(s["title"])}</h1>
-        <p class="lead">{e(s["copy"] if s["id"] != "locs" else WENDY["naturalLocs"])}</p>
+        <p class="lead">{e(lead)}</p>
         <p class="hero-actions" style="margin-top:1.25rem">
           <a class="btn btn-primary" href="./book.html">Book this service</a>
           <a class="btn btn-ghost" href="./gallery.html">See our work</a>
@@ -576,12 +641,13 @@ def service_landing(s: dict) -> str:
     <section class="section">
       <div class="wrap split">
         <div class="parallax-wrap" data-parallax>
-          <img src="./{img}" alt="{e(s["title"])} at Kuzz Kreations" loading="eager" width="1200" height="900" />
+          <img src="./{img}" alt="{e(s["title"])} at Kuzz Kreations Brantford" loading="eager" width="1200" height="900" />
         </div>
         <div class="copy" data-reveal>
           <p class="kicker">At the salon</p>
-          <h2 class="title">{e(s["title"])}</h2>
-          <p>{e(s["copy"])}</p>
+          <h2 class="title">{e(s["title"])} at Kuzz Kreations</h2>
+          <p>{e(s.get("copy") or lead)}</p>
+          {f'<p style="margin-top:1rem">{e(lead)}</p>' if lead and lead != s.get("copy") else ""}
           <p style="margin-top:1rem;color:var(--muted)">{e(COPY["home"]["salonBlock"])}</p>
           <p style="margin-top:1.25rem">
             <a class="btn btn-primary" href="./book.html">Book appointment</a>

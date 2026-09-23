@@ -24,33 +24,78 @@
     {
       "id": "locs",
       "page": "locs.html",
-      "oldPages": ["dreads.html"],
+      "oldPages": [
+        "dreads.html"
+      ],
       "seoTitle": "Natural Locs & Dreadlocks in Brantford | Kuzz Kreations",
       "seoDesc": "Natural locs, microlocs and dreadlock styles in Brantford. Castor oil care, installs, retightens. Book at Kuzz Kreations.",
       "title": "Natural Locs",
       "copy": "Our signature dreadloc styles are as simple as they are stunning. We enhance each look with premium natural castor oil—rich in nutrients that encourage faster growth, increased thickness, and lasting scalp health. It's not just a style; it's an investment in your hair's future.",
       "image": "images/ig-DbRdQS7OwNK.jpg",
-      "featured": true
+      "featured": true,
+      "intro": "Our signature dreadloc styles are as simple as they are stunning. We enhance each look with premium natural castor oil—rich in nutrients that encourage faster growth, increased thickness, and lasting scalp health. It's not just a style; it's an investment in your hair's future."
     },
     {
       "id": "extensions",
       "page": "weave-extensions.html",
-      "oldPages": ["weave_extensions.html"],
+      "oldPages": [
+        "weave_extensions.html"
+      ],
       "seoTitle": "Hair Extensions & Weave in Brantford | Kuzz Kreations",
       "seoDesc": "Weave and hair extensions in Brantford — protective styles that boost length and volume. Book at Kuzz Kreations.",
       "title": "Hair Extensions",
       "copy": "Let our Weave Extensions do their Magic. A protective way in boosting your style.",
-      "image": "images/google-1.jpg"
+      "image": "images/google-1.jpg",
+      "intro": "We strive to be the one stop for your salon needs in a warm, intimate, relaxing space. Weave and hair extensions add length, color, and volume with installs chosen for your hair and lifestyle.",
+      "sections": [
+        {
+          "title": "Weave hair extensions",
+          "copy": "Weaves sew wefted tracks into your existing hair. A quality sew-in can look and feel natural with less damage when installed and maintained correctly. We offer traditional seamless sew-ins and braidless versatile options."
+        },
+        {
+          "title": "Install types",
+          "copy": "Options include weft extensions with microbeads, microlink installs, full-head weaves (no closure), leave-out blends, and clip-ins for temporary volume. We match the method to your density, edge health, and how long you want to wear it."
+        },
+        {
+          "title": "Volume, color & length",
+          "copy": "Extensions can add volume, color, and length using synthetic or human hair. We blend for a natural finish — leave-out where you want it, or closed installs when you prefer full coverage."
+        },
+        {
+          "title": "Takeout & maintenance",
+          "copy": "Healthy takeouts matter as much as installs. Tell us how long the install has been in so we can plan timing and care. Bring reference photos so we can quote more accurately before your chair time."
+        }
+      ]
     },
     {
       "id": "braids",
       "page": "braids-extensions.html",
-      "oldPages": ["braidsextensions.html"],
+      "oldPages": [
+        "braidsextensions.html"
+      ],
       "seoTitle": "Braids Extensions in Brantford | Kuzz Kreations",
       "seoDesc": "Braids extensions and protective braid styles for healthy hair growth in Brantford. Book Kuzz Kreations.",
       "title": "Braids Extensions",
       "copy": "Braids hairstyles and different types of twists for guys to ensure healthy hair growth.",
-      "image": "images/google-5.jpg"
+      "image": "images/google-5.jpg",
+      "intro": "This is a popular go-to hair style with endless possibilities — length, color, accents, and accessories. Braids extensions are a multipurpose protective style that help maintain length, volume, and integrity while reducing friction on your natural strands.",
+      "sections": [
+        {
+          "title": "Best hair for braids",
+          "copy": "At Kuzz Kreations you can buy braiding hair extensions for all your braid styles — Xpression Braids, Spectra Stretch Braids, Kanekalon, and pre-stretched braiding hair in classic and fashion colors. Call to order what you need for your appointment."
+        },
+        {
+          "title": "Braids with extensions styles",
+          "copy": "Braid-in extensions work for many hair types and textures. From feed-in braids to full protective installs, we tailor length, color, and finish so the style holds up for work, weekends, and everything in between."
+        },
+        {
+          "title": "Cornrows, twists & box braids",
+          "copy": "Cornrows extensions, twist extensions, and box braids each protect differently. We map the right pattern for your hairline, density, and lifestyle so tension stays healthy and the look stays sharp."
+        },
+        {
+          "title": "Care before & after",
+          "copy": "Deep condition before installing braids extensions so your hair is strong before added weight. Never braid too tightly — that risks scalp damage. Wrap with a silk scarf at night to reduce frizz and dryness."
+        }
+      ]
     },
     {
       "id": "color",
@@ -60,27 +105,88 @@
       "seoDesc": "Hair cuts, balayage, ombre and color in natural blonde, brown and red hues. Brantford salon — Kuzz Kreations.",
       "title": "Hair Cut & Hair Color",
       "copy": "Make a dramatic color change from soft balayage and ombre blends in natural hues of blonde, brown and red.",
-      "image": "images/google-2.jpg"
+      "image": "images/google-2.jpg",
+      "intro": "Make a dramatic color change or a soft shift — balayage, ombre, and dimensional blends in blonde, brown, and red. Cuts shape the color so the finish looks intentional, not flat.",
+      "sections": [
+        {
+          "title": "Balayage & ombre",
+          "copy": "Soft balayage and ombre blends grow out more gracefully than a hard line. We paint light where it flatters your face and keep depth at the root for a lived-in salon finish."
+        },
+        {
+          "title": "Cuts that support color",
+          "copy": "A strong cut makes color read cleaner. We trim and shape before or after color depending on the goal — soft layers, blunt lines, or face-framing pieces that show off the blend."
+        },
+        {
+          "title": "Hair health first",
+          "copy": "Color is only as good as the canvas. We talk porosity, previous color, and heat history so the formula stays kind to your strands. Bond-building treatments pair well when hair needs support."
+        },
+        {
+          "title": "Maintenance",
+          "copy": "Leave with a simple care plan — wash cadence, color-safe products, and when to book a gloss or root refresh so the look stays rich between visits."
+        }
+      ]
     },
     {
       "id": "mens",
       "page": "braids-for-men.html",
-      "oldPages": ["braids-for-men.html"],
+      "oldPages": [
+        "braids-for-men.html"
+      ],
       "seoTitle": "Mens Braids Styles in Brantford | Kuzz Kreations",
       "seoDesc": "Men's braids styled with care for healthy hair growth in Brantford. Book at Kuzz Kreations.",
       "title": "Mens Braids Styles",
       "copy": "Men Braids styles the way you want them, with care to ensure healthy hair growth and style.",
-      "image": "images/google-5.jpg"
+      "image": "images/google-5.jpg",
+      "intro": "Look runway ready from the moment you wake up. Installing box braids is one thing — styling them is where you unleash creativity. Polished, cool, and built for work or weekend.",
+      "sections": [
+        {
+          "title": "Men braids with fade",
+          "copy": "Braids with a fade give length and volume while your own hair stays protected underneath. Wear them long or short — we shape the fade and braid pattern to match your face and lifestyle."
+        },
+        {
+          "title": "Braids for men with long hair",
+          "copy": "Long hair braided overnight can give heatless waves and easier mornings. We braid for hold, comfort, and a clean finish that still looks intentional when you take them down."
+        },
+        {
+          "title": "Protecting hair while in braids",
+          "copy": "Keep the scalp moisturized so it does not get itchy or flaky. Oil lightly at least a few times a week. Braids are not just a look — they protect your natural strands through the growth stage."
+        },
+        {
+          "title": "Box braids & modern color",
+          "copy": "Upgrade classic men's braids with modern color, including balayage-inspired solutions when it fits your hair health. We talk through options before color so the braid install stays strong."
+        }
+      ]
     },
     {
       "id": "crochet",
       "page": "crochet-braids.html",
-      "oldPages": ["crochetbraids.html"],
+      "oldPages": [
+        "crochetbraids.html"
+      ],
       "seoTitle": "Crochet Braids in Brantford | Kuzz Kreations",
       "seoDesc": "Crochet braids and protective styles with healthy hair care in Brantford. Book Kuzz Kreations.",
       "title": "Crochet Braids",
       "copy": "Healthy hair care begins with an exfoliating cleanse to remove product build up",
-      "image": "images/google-2.jpg"
+      "image": "images/google-2.jpg",
+      "intro": "Lightweight crochet braids (sometimes called latch-hook braids) loop synthetic hair through your natural hair braided into cornrows. You get length and volume while your own strands stay protected underneath.",
+      "sections": [
+        {
+          "title": "Curly & flowing crochet",
+          "copy": "Crochet curly styles give carefree, bohemian waves that work with casual or dressed-up looks. Synthetic hair holds curl even when humidity would wreck a blowout."
+        },
+        {
+          "title": "Crochet box braids, twists & faux locs",
+          "copy": "From crochet box braids to twists and faux locs, we mix textures so you can try loc-inspired looks without a full permanent install. Great when you want contrast and low-key drama."
+        },
+        {
+          "title": "Protection & creativity",
+          "copy": "Cornrows under crochet protect your natural hair while you style freely — half-up buns, long layers, short crops. Part of the fun of synthetic hair is color play: red, purple, blue, blonde, or mixes."
+        },
+        {
+          "title": "Balayage & color accents",
+          "copy": "Play with balayage-inspired highlights on crochet for dimension without committing bleach to your natural hair. We plan color against your skin tone and the crochet texture you choose."
+        }
+      ]
     },
     {
       "id": "olaplex",
@@ -90,7 +196,26 @@
       "seoDesc": "Olaplex bond-building treatments to repair damage and fight frizz. Brantford — Kuzz Kreations.",
       "title": "Olaplex Hair Treatments",
       "copy": "Rejuvenate your hair with our penetrating hair treatment service, that repairs damaged hair, and fight the battle of frizzy hair.",
-      "image": "images/ig-C5E7jYWRrQJ.jpg"
+      "image": "images/ig-C5E7jYWRrQJ.jpg",
+      "intro": "Rejuvenate damaged or stressed hair with penetrating bond-building treatments. Olaplex-style care helps repair breakage pathways and calm frizz so styles hold better and hair feels stronger.",
+      "sections": [
+        {
+          "title": "Who it is for",
+          "copy": "Color-treated, heat-styled, or over-manipulated hair often needs more than a regular conditioner. Bond-building treatments support the structure of the hair so it can take styles without snapping."
+        },
+        {
+          "title": "What to expect",
+          "copy": "We assess your hair, apply the treatment in-salon, and finish with products that lock in softness. Many clients feel smoother, less frizz, and better elasticity after a session."
+        },
+        {
+          "title": "Pairs with color & locs",
+          "copy": "Treatments sit well before or after color services and can support loc and braid journeys when hair needs moisture and strength between installs."
+        },
+        {
+          "title": "At-home follow through",
+          "copy": "We recommend a simple home routine so salon results last — gentle cleansing, leave-in moisture, and less high heat when you can skip it."
+        }
+      ]
     },
     {
       "id": "relaxer",
@@ -100,7 +225,26 @@
       "seoDesc": "Healthy perm relaxer techniques in Brantford. Book a consult at Kuzz Kreations.",
       "title": "Perm Relaxer",
       "copy": "While some People go to great lengths for hair growth and to straighten process, we provide the best relaxer technique for healthy hair",
-      "image": "images/google-1.jpg"
+      "image": "images/google-1.jpg",
+      "intro": "Straightening should never mean sacrificing scalp or strand health. We use careful relaxer technique, timing, and neutralizing so the finish is smooth without unnecessary damage.",
+      "sections": [
+        {
+          "title": "Healthy relaxer technique",
+          "copy": "Application, timing, and thorough neutralizing matter. We work in sections, protect the scalp, and stop the process when the texture goals are met — not a minute longer."
+        },
+        {
+          "title": "Who it suits",
+          "copy": "Clients who want lasting smoothness or easier styling day-to-day. We discuss virgin hair vs. previously relaxed hair so we do not overlap chemicals dangerously."
+        },
+        {
+          "title": "Aftercare",
+          "copy": "Moisture and protein balance keep relaxed hair strong. We set wash, trim, and touch-up windows so new growth and relaxed lengths stay manageable."
+        },
+        {
+          "title": "Consult first",
+          "copy": "Send photos or book a consult if you are unsure. Pricing and timing depend on length, density, and prior chemical history."
+        }
+      ]
     }
   ],
   "products": {
@@ -175,7 +319,11 @@
         "initials": "S1",
         "name": "Stylist One",
         "role": "Hair Stylist",
-        "specialties": ["Natural locs", "Microlocs", "Loc maintenance"],
+        "specialties": [
+          "Natural locs",
+          "Microlocs",
+          "Loc maintenance"
+        ],
         "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
         "placeholder": true
       },
@@ -184,7 +332,11 @@
         "initials": "S2",
         "name": "Stylist Two",
         "role": "Hair Stylist",
-        "specialties": ["Braids extensions", "Cornrows", "Men's braids"],
+        "specialties": [
+          "Braids extensions",
+          "Cornrows",
+          "Men's braids"
+        ],
         "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
         "placeholder": true
       },
@@ -193,7 +345,11 @@
         "initials": "S3",
         "name": "Stylist Three",
         "role": "Hair Stylist",
-        "specialties": ["Weave extensions", "Crochet braids", "Protective styles"],
+        "specialties": [
+          "Weave extensions",
+          "Crochet braids",
+          "Protective styles"
+        ],
         "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
         "placeholder": true
       },
@@ -202,7 +358,11 @@
         "initials": "S4",
         "name": "Stylist Four",
         "role": "Hair Stylist",
-        "specialties": ["Hair color", "Cuts", "Olaplex treatments"],
+        "specialties": [
+          "Hair color",
+          "Cuts",
+          "Olaplex treatments"
+        ],
         "bio": "Placeholder profile for a Kuzz Kreations stylist. Specialty details, photo, and booking preferences will be added once confirmed.",
         "placeholder": true
       }
