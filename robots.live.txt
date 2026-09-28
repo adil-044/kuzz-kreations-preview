@@ -1,4 +1,4 @@
-# Live robots — use this filename as robots.txt on HostGator go-live.
+# Live robots for kuzzkreations.ca
 
 User-agent: *
 Allow: /

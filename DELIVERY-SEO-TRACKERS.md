@@ -10,11 +10,23 @@ Vault: [[Kuzz Kreations Delivery Lock 2026-08-30]] · [[Conversion Tracking Stac
 
 ## A. Before zip (build)
 
-- [ ] Remove orange **preview bar** (`has-preview` / `preview_bar()`)
-- [ ] Wendy copy untouched (`copy.json` wendy blocks)
-- [ ] Hero = IG `DTDxJLbkQXk` slide 2
-- [ ] Rebuild: `python3 build_pages.py`
-- [ ] Locs scroll stage + gallery animations still work (reduced-motion OK)
+- [x] Remove orange **preview bar** (`has-preview` / `preview_bar()`) — done in `pack_hostgator.py`
+- [x] Wendy copy untouched (`copy.json` wendy blocks)
+- [x] Hero = IG `DTDxJLbkQXk` slide 2
+- [x] Rebuild: `python3 build_pages.py` then `python3 pack_hostgator.py`
+- [x] Locs scroll stage + gallery animations — assets verified in delivery smoke-test
+
+## D. Zip contents (shipped 2026-09-28)
+
+```
+Kuzz-Kreations-Website/
+  README.md · UPLOAD.txt · docs/SEO-AND-TRACKERS.md
+  public_html/
+    *.html · css/styles.css · js/* · images/
+    .htaccess · robots.txt (live) · sitemap.xml · llms.txt
+```
+
+Zip path (vault): `500 - Exports/clients/kuzz-kreations/Kuzz-Kreations-Website-HostGator-2026-09-28.zip`
 
 ## B. SEO files in zip
 
