@@ -68,49 +68,69 @@
 
     if (slides.length > 1 && pin) {
       const total = slides.length;
-      const mobileBarH = () => {
-        const bar = document.querySelector(".mobile-bar");
-        if (!bar) return 0;
-        const style = window.getComputedStyle(bar);
-        if (style.display === "none") return 0;
-        return bar.getBoundingClientRect().height || 0;
-      };
-      const stageTravel = () => Math.max(400, window.innerHeight - mobileBarH()) * (total * 0.85);
+      // Phone: no pin — sticky Call/Book was covering the square. Desktop keeps scrub pin.
+      const phone = window.matchMedia("(max-width: 839px)");
 
-      ScrollTrigger.create({
-        trigger: stage,
-        start: "top top",
-        end: () => "+=" + stageTravel(),
-        pin: pin,
-        scrub: 0.65,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const idx = Math.min(total - 1, Math.floor(self.progress * total));
-          setActive(idx);
-          if (progress) progress.style.transform = `scaleX(${self.progress})`;
-        },
-      });
+      const bindStage = () => {
+        ScrollTrigger.getAll().forEach((st) => {
+          if (st.trigger === stage || st.trigger === pin) st.kill();
+        });
 
-      // Soft drift inside matte — never bleeds past frame
-      slides.forEach((slide) => {
-        const img = slide.querySelector(".locs-matte img");
-        if (!img) return;
-        gsap.fromTo(
-          img,
-          { scale: 1.03 },
-          {
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: stage,
-              start: "top top",
-              end: () => "+=" + stageTravel(),
-              scrub: true,
-              invalidateOnRefresh: true,
+        if (phone.matches) {
+          setActive(0);
+          if (progress) progress.style.transform = "scaleX(0.2)";
+          ScrollTrigger.create({
+            trigger: stage,
+            start: "top 70%",
+            end: "bottom 35%",
+            scrub: 0.5,
+            onUpdate: (self) => {
+              const idx = Math.min(total - 1, Math.floor(self.progress * total));
+              setActive(idx);
+              if (progress) progress.style.transform = `scaleX(${self.progress || 0.05})`;
             },
-          }
-        );
+          });
+          return;
+        }
+
+        ScrollTrigger.create({
+          trigger: stage,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * (total * 0.85),
+          pin: pin,
+          scrub: 0.65,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            const idx = Math.min(total - 1, Math.floor(self.progress * total));
+            setActive(idx);
+            if (progress) progress.style.transform = `scaleX(${self.progress})`;
+          },
+        });
+
+        slides.forEach((slide) => {
+          const img = slide.querySelector(".locs-matte img");
+          if (!img) return;
+          gsap.fromTo(
+            img,
+            { scale: 1.03 },
+            {
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: stage,
+                start: "top top",
+                end: () => "+=" + window.innerHeight * (total * 0.85),
+                scrub: true,
+              },
+            }
+          );
+        });
+      };
+
+      bindStage();
+      phone.addEventListener("change", () => {
+        bindStage();
+        ScrollTrigger.refresh();
       });
     }
 

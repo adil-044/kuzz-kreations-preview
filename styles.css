@@ -779,6 +779,8 @@ body.has-preview .nav { top: 2rem; }
   display: grid; gap: 1.75rem; padding: 2.25rem 0 1.5rem;
   align-items: center;
 }
+.locs-stage-copy,
+.locs-stage-shell { min-width: 0; }
 .locs-hint {
   margin: 0 0 1rem; color: var(--coral);
   font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
@@ -1064,20 +1066,38 @@ body.has-preview .nav { top: 2rem; }
 }
 @media (max-width: 839px) {
   :root {
-    /* bar height: pad + buttons + safe area — keep sticky CTA clear of scroll stage */
     --mobile-bar-h: calc(4.85rem + env(safe-area-inset-bottom, 0px));
   }
   html { scroll-padding-bottom: var(--mobile-bar-h); }
   body { padding-bottom: var(--mobile-bar-h); }
-  /* Locs pin stage: fit above sticky Call/Book, not under it */
+
+  /* Phone: no full-viewport pin — image + progress sit above Call/Book */
   .locs-stage-pin {
-    min-height: calc(100dvh - var(--mobile-bar-h));
-    max-height: calc(100dvh - var(--mobile-bar-h));
-    box-sizing: border-box;
-    padding-bottom: 0.35rem;
+    min-height: 0;
+    align-items: start;
+    padding-bottom: calc(var(--mobile-bar-h) + 0.75rem);
   }
-  .locs-stage-grid { padding-block: 1.25rem 0.5rem; }
-  .locs-stage-shell { width: min(100%, 360px); }
+  .locs-stage-grid {
+    gap: 1.1rem;
+    padding: 1.5rem 0 0.5rem;
+  }
+  .locs-stage-copy .lead,
+  .locs-stage-copy .locs-cta-row {
+    display: none;
+  }
+  .locs-stage-copy .title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+  .locs-hint { margin-bottom: 0.65rem; }
+  .locs-dots { margin-bottom: 0.75rem; }
+  /* Photo first so square is fully on screen; progress stays under frame */
+  .locs-stage-shell { order: -1; width: min(100%, 92vw); margin-inline: auto; }
+  .locs-stage-frame {
+    padding: 0.55rem;
+  }
+  .locs-progress {
+    margin-bottom: 0.15rem;
+  }
 }
 
 .locs-feature { border: 1px solid color-mix(in oklch, var(--coral) 40%, var(--line)); }
