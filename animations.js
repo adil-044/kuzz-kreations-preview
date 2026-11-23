@@ -68,13 +68,23 @@
 
     if (slides.length > 1 && pin) {
       const total = slides.length;
+      const mobileBarH = () => {
+        const bar = document.querySelector(".mobile-bar");
+        if (!bar) return 0;
+        const style = window.getComputedStyle(bar);
+        if (style.display === "none") return 0;
+        return bar.getBoundingClientRect().height || 0;
+      };
+      const stageTravel = () => Math.max(400, window.innerHeight - mobileBarH()) * (total * 0.85);
+
       ScrollTrigger.create({
         trigger: stage,
         start: "top top",
-        end: () => "+=" + window.innerHeight * (total * 0.85),
+        end: () => "+=" + stageTravel(),
         pin: pin,
         scrub: 0.65,
         anticipatePin: 1,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           const idx = Math.min(total - 1, Math.floor(self.progress * total));
           setActive(idx);
@@ -95,8 +105,9 @@
             scrollTrigger: {
               trigger: stage,
               start: "top top",
-              end: () => "+=" + window.innerHeight * (total * 0.85),
+              end: () => "+=" + stageTravel(),
               scrub: true,
+              invalidateOnRefresh: true,
             },
           }
         );

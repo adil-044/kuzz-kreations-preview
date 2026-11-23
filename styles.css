@@ -28,6 +28,8 @@
   --max: 1160px;
   --z-nav: 50;
   --z-menu: 35;
+  /* mobile Call/Book bar — 0 on desktop */
+  --mobile-bar-h: 0px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -1051,13 +1053,32 @@ body.has-preview .nav { top: 2rem; }
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
   display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
-  padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom));
+  padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
   background: color-mix(in srgb, var(--ivory) 92%, transparent);
   backdrop-filter: blur(12px); border-top: 1px solid var(--line);
 }
 .mobile-bar a { min-height: 46px; font-size: 0.9rem; }
-@media (min-width: 840px) { .mobile-bar { display: none; } body { padding-bottom: 0; } }
-@media (max-width: 839px) { body { padding-bottom: 4.5rem; } }
+@media (min-width: 840px) {
+  .mobile-bar { display: none; }
+  body { padding-bottom: 0; }
+}
+@media (max-width: 839px) {
+  :root {
+    /* bar height: pad + buttons + safe area — keep sticky CTA clear of scroll stage */
+    --mobile-bar-h: calc(4.85rem + env(safe-area-inset-bottom, 0px));
+  }
+  html { scroll-padding-bottom: var(--mobile-bar-h); }
+  body { padding-bottom: var(--mobile-bar-h); }
+  /* Locs pin stage: fit above sticky Call/Book, not under it */
+  .locs-stage-pin {
+    min-height: calc(100dvh - var(--mobile-bar-h));
+    max-height: calc(100dvh - var(--mobile-bar-h));
+    box-sizing: border-box;
+    padding-bottom: 0.35rem;
+  }
+  .locs-stage-grid { padding-block: 1.25rem 0.5rem; }
+  .locs-stage-shell { width: min(100%, 360px); }
+}
 
 .locs-feature { border: 1px solid color-mix(in oklch, var(--coral) 40%, var(--line)); }
 .locs-feature .icon { background: color-mix(in oklch, var(--coral) 28%, transparent); }
