@@ -2,3 +2,6 @@
 # HostGator pack output
 dist/
 
+
+# raw Drive mirror (use images/home curated set)
+images/drive-2026-11-23/
